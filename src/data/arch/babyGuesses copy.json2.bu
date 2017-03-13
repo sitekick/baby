@@ -1,0 +1,53 @@
+{
+	"settings": {
+		"appStatus" : true,
+		"babyName": "Baby Williams",
+		"message": "Lynette and Hunter are Expecting!",
+		"dueDate": {
+			"year" : 2017,
+			"month" : 3,
+			"day" : 25
+			},
+		"babyBorn" : false,
+		"birthDetails" : {
+			"gender" : null,
+			"weight" : 80,
+			"date" : {
+				"year" : null,
+				"month" : null,
+				"day" : null
+			}
+		}
+	},
+	"guesses": [{
+		"name": "Hunter Wi",
+		"gender": "boy",
+		"weight": 148,
+		"day": {
+			"month": 0,
+			"day": 31,
+			"year": 2017
+		},
+		"pending": false
+	}, {
+		"name": "Lynette W",
+		"gender": "girl",
+		"weight": 122,
+		"day": {
+			"month": 1,
+			"day": 2,
+			"year": 2017
+		},
+		"pending": false
+	}, {
+		"name": "Penelpp",
+		"gender": "boy",
+		"weight": "106",
+		"day": {
+			"month": 2,
+			"day": 19,
+			"year": 2017
+		},
+		"pending": false
+	}]
+}

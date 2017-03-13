@@ -1,0 +1,22 @@
+{
+	"settings": {
+		"appStatus" : true,
+		"babyName": "Baby Williams",
+		"message": "Lynette and Hunter are Expecting!",
+		"dueDate": {
+			"year" : 2017,
+			"month" : 3,
+			"day" : 25
+			},
+		"babyBorn" : false,
+		"birthDetails" : {
+			"gender" : null,
+			"weight" : 80,
+			"date" : {
+				"year" : null,
+				"month" : null,
+				"day" : null
+			}
+		}
+	}
+}
