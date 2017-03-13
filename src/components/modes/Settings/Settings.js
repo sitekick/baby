@@ -20,7 +20,7 @@ export default class Settings extends Component {
 		return (
 			<div className="mode settings" style={style.wrapper}>
 			<CloseButton floatAlign="right" clickAction={() => {this.props.closeButtonClickAction('input')}}/>
-			<h1>Settings</h1>
+			<h2>Settings</h2>
 			<SettingsForm fieldValues={this.props.settingsData} settingsSubmit={this.props.settingsFormSettingsSubmit}/>
 			</div>
 		)

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import GuessApp from './src/containers/GuessApp';
 
 //CSS Theme
-require("./src/scss/theme.scss");
+require("./src/scss/styles.scss");
 
 (function() {
 	
@@ -11,7 +11,7 @@ require("./src/scss/theme.scss");
 	var url = 'src/data/babyGuesses.json';
 	
 	if(!xhr) {
-		ReactDOM.render(<p>Could not load data</p>, document.getElementById('guess'));
+		ReactDOM.render(<p>Could not load data</p>, document.getElementById('app'));
 	} else {
 		xhr.onreadystatechange = _loadData;
 		xhr.open('GET', url);
@@ -24,7 +24,7 @@ require("./src/scss/theme.scss");
 			
 			if(xhr.status === 200){
 				var data = JSON.parse(xhr.responseText);
-				ReactDOM.render(<GuessApp data={data} />, document.getElementById('guess'));
+				ReactDOM.render(<GuessApp data={data} />, document.getElementById('app'));
 			}
 		}
 	}

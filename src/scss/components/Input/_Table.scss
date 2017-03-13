@@ -1,0 +1,64 @@
+table.guesses  {
+	
+	thead  {
+	
+		tr  {
+			color: $pink_dark;
+			text-transform: uppercase;
+			font-size: 1.125em;
+		}
+	}
+	
+	tbody {
+		
+		tr  {
+			background-color: #FFF;
+			
+			td  {
+			padding: .5em 0 .5em .5em;
+			font-size: 1.25em;
+			
+			&.weight {
+				
+				span.suffix {
+					font-size : .75em;
+				}
+			}	
+			}
+		
+		&.predictor {
+			background-color: $blue;
+			font-size: 1.35em;
+			color: #FFF;
+			
+			td  {
+				padding: .5em 0 .5em .25em;
+			}
+		
+		&.girl{
+			background-color: $pink;
+		}
+		}
+		&:nth-child(even){
+			background-color: #E8EBF7;
+		}
+		}
+		
+		.gender {
+				background-image: url(../img/babySlices.png);
+				background-repeat: no-repeat;
+				background-size: 200% 400%;
+				width: 40px;
+				height: 40px;
+			
+			&.girl  {
+				background-position: 0% 100%;
+			}
+			&.boy  {
+				background-position: 100% 66.66667%;
+			}
+		}
+	}
+}
+
+	

@@ -27,22 +27,12 @@ function SimpleDatePicker(props) {
 		
 	} 
 	
-	const style = {
-		select : {
-			fontSize: "inherit",
-			border: 0,
-			backgroundColor: "#FFF",
-			color: "#2F4550",
-			marginRight: 5
-		}
-	}
-	
 	return (
 		<span className="simple-date-picker">
-		<MonthElement months={_monthData()} onChangeMonth={onElementChange} validateMonth={props.validateDatePicker} selectedMonth={pickerMonth} styleObj={style.select} /> 
-		<DayElement month={_monthData(pickerMonth)} validateDay={props.validateDatePicker} onChangeDay={onElementChange} selectedDay={pickerDay} styleObj={style.select} />
+		<MonthElement months={_monthData()} onChangeMonth={onElementChange} validateMonth={props.validateDatePicker} selectedMonth={pickerMonth} /> 
+		<DayElement month={_monthData(pickerMonth)} validateDay={props.validateDatePicker} onChangeDay={onElementChange} selectedDay={pickerDay}  />
 		{props.selectMode && props.selectMode === "MDY" &&
-		<YearElement selectedYear={pickerYear} onChangeYear={onElementChange} styleObj={style.select} />
+		<YearElement selectedYear={pickerYear} onChangeYear={onElementChange} />
 		}
 		</span>
 	)

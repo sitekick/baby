@@ -80,133 +80,73 @@ export default class SettingsForm extends Component {
 	
 	render() {
 		
-		var style = {
-			table : {
-				element : {
-					width: "100%",
-					borderCollapse: "collapse",
-					fontSize: "1.5em",
-					backgroundColor: "#E8EBF7",
-					color: "#A6B1E1",
-				},
-				tbody : {
-					tr : {
-						padding: "20 0"
-					}
-				}
-			},
-			appStatus : {
-				element : {
-					overflow: "hidden",
-					height: 50,
-				},
-				h2 : {
-					margin: 0
-				},
-				switch : {
-					float: "right",
-					fontSize: "2em"
-				},
-				msg : {
-					fontSize: ".75em",
-					fontStyle: "italic",
-					margin: 0
-				}
-			},
-			form : {
-				element : {},
-				field : {
-					text : {
-						fontSize: "1.5rem",
-						padding: ".2em 0 .2em .2em",
-						border: "3px solid #E8EBF7",
-						width: "92.5%",
-					},
-					radio : {
-						margin: "5px 5px 0 0",
-						border: "1px solid red",
-						verticalAlign: "top"
-					},
-					select : {
-						fontSize : "1.25rem"
-					},
-					range : { 
-						width: "65%"
-					},
-					submit: {
-						backgroundColor: "#2F4550",
-						color: "#FFF",
-						borderRadius: 5,
-						border: "3px solid #A6B1E1",
-						fontSize: "1.25rem",
-						margin: "1em 0",
-						padding: ".35em 0",
-						width: "50%",
-						textTransform: "uppercase",
-						cursor: "pointer"
-					}
-				},
-				p : {
-					element : {
-						fontSize: "1.5em",
-						margin : "0 0 1em",
-						position: "relative"
-					}, 
-					strong : {
-						color : "#A6B1E1",
-						minWidth: 90,
-						display: "inline-block"	
-					}
-				},
-				label : {
-					color: "#2F4550"
-				}
-			}
-		}
-		
-		
 		return (
-			<form onSubmit={this.settingsSubmit}>
-			<div style={style.appStatus.element} >
-			<input name="appStatus" style={style.appStatus.switch} type="checkbox" onChange={this.onFieldChange} checked={this.state.appStatus} />
-			<h2 style={style.appStatus.h2}>App Status</h2>
-			{(this.state.appStatus)  
-				? <p style={style.appStatus.msg}>Accepting guesses from friends and family</p>
-				: <p style={style.appStatus.msg}>Not longer accepting guesses from friends and family</p>
-			}
-			</div>
-			<table style={style.table.element}>
-			<tbody>
-			<tr><td>Babys Name</td><td colSpan="2"><input name="babyName" type="text" onChange={this.onFieldChange} value={this.state.babyName} style={style.form.field.text} /></td></tr>
-			
-			<tr><td>Message</td><td colSpan="2"><input name="message" type="text" onChange={this.onFieldChange}  value={this.state.message} style={style.form.field.text} /></td></tr>
-			
-			<tr><td>Due Date</td><td colSpan="2"><SimpleDatePicker componentName="settingsFormDueDate" startDate= {this.state.dueDate} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" /></td></tr>
-			<tr><td>Baby Status</td><td colSpan="2"><input name="babyBorn" type="checkbox" onChange={this.onFieldChange} checked={this.state.babyBorn} /></td></tr>
-			
-			<tr><td colSpan="3"><h3>Birth Details</h3></td></tr>
-			<tr>
-			{/* Birth Details:Gender */}
-			<td>Gender</td><td colSpan="2"><input id="gender-boy" checked={(this.state.birthDetails.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onBirthDetailsFieldChange} style={style.form.field.radio} />
-			<label htmlFor="gender-boy" style={style.form.label}>Boy </label>
-			<input id="gender-girl" checked={(this.state.birthDetails.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onBirthDetailsFieldChange} style={style.form.field.radio} />
-			<label htmlFor="gender-girl" style={style.form.label}>Girl</label>
-			</td></tr>
-			{/* Birth Details:Weight */}
-			<tr>
-			<td>Weight</td>
-			<td style={{color: "#2F4550"}}><WeightDisplay weightOz={this.state.birthDetails.weight} /></td>
-			<td><input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.birthDetails.weight} data-validate='touch'   onChange={this.onBirthDetailsFieldChange} style={style.form.field.range} />
-			</td></tr>
-			{/* Birth Details:Date */}
-			<tr>
-			<td>Day of Birth</td><td colSpan="2"><SimpleDatePicker componentName="settingsFormBirthDate" startDate={this.state.birthDetails.date}   onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" />
-			</td></tr>
-			{/* Save Settings */}
-			<tr><td>&nbsp;</td><td colSpan="2" >
-			<input type="submit" name="submitSettings" style={style.form.field.submit} value="Save" />
-			</td></tr>
-			
+			<form className="settings" onSubmit={this.settingsSubmit}>
+				<div className="appStatus" >
+					<input type="checkbox" onChange={this.onFieldChange} checked={this.state.appStatus} />
+					<h3>App Status</h3>
+						{(this.state.appStatus)  
+						? <p>Accepting guesses from friends and family</p>
+						: <p>Not longer accepting guesses from friends and family</p>
+						}
+				</div>
+				<table>
+				<tbody>
+					<tr>
+						<td><p>Babys Name</p></td>
+						<td colSpan="2">
+							<input name="babyName" type="text" onChange={this.onFieldChange} value={this.state.babyName} />
+						</td></tr>
+					<tr>
+						<td><p>Message</p></td>
+						<td colSpan="2">
+							<input name="message" type="text" onChange={this.onFieldChange} value={this.state.message} />
+						</td></tr>
+					<tr>
+						<td><p>Due Date</p></td>
+						<td colSpan="2">
+							<SimpleDatePicker componentName="settingsFormDueDate" startDate= {this.state.dueDate} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" />
+						</td></tr>
+					<tr>
+						<td><p>Baby Status</p></td>
+						<td colSpan="2">
+							<input name="babyBorn" type="checkbox" onChange={this.onFieldChange} checked={this.state.babyBorn} />
+						</td></tr>
+					<tr>
+						<td colSpan="3">
+							<h3>Birth Details</h3>
+						</td></tr>
+					<tr>
+						{/* Birth Details:Gender */}
+						<td><p>Gender</p></td>
+						<td colSpan="2">
+							<input id="gender-boy" checked={(this.state.birthDetails.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onBirthDetailsFieldChange} />
+							<label htmlFor="gender-boy">Boy </label>
+							<input id="gender-girl" checked={(this.state.birthDetails.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onBirthDetailsFieldChange} />
+							<label htmlFor="gender-girl">Girl</label>
+						</td></tr>
+					<tr>
+						{/* Birth Details:Weight */}
+						<td><p>Weight</p></td>
+							<td>
+								<WeightDisplay weightOz={this.state.birthDetails.weight} />
+							</td>
+							<td>
+								<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.birthDetails.weight} data-validate='touch' onChange={this.onBirthDetailsFieldChange} />
+							</td></tr>
+					<tr>
+						{/* Birth Details:Date */}
+						<td><p>Day of Birth</p></td>
+						<td colSpan="2">
+							<SimpleDatePicker componentName="settingsFormBirthDate" startDate={this.state.birthDetails.date}   onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" />
+						</td></tr>
+					<tr>
+						{/* Save Settings */}
+						<td />
+						<td colSpan="2" >
+							<input type="submit" name="submitSettings" value="Save" />
+						</td>
+					</tr>
 			</tbody>
 			</table>
 			</form>

@@ -4,28 +4,10 @@ import Predictor from './Predictor';
 
 function GuessTable(props) {	 
 		
-	const style = {
-		
-		table : {
-			width: "100%",
-			margin: 0,
-			borderCollapse: "collapse",
-			textAlign: "left",
-			color: "#2F4550"
-		}, 
-		thead : {
-			tr : {
-				color: "#B4869F",
-				textTransform: "uppercase",
-				fontSize: "1.125em"
-			}
-		}
-	};
-	
 	return (
-		<table style={style.table}>
+		<table className="guesses">
 			<thead>
-				<tr style={style.thead.tr}>
+				<tr>
 					<th>Name</th>
 					<th>Gender</th>
 					<th>Weight</th>

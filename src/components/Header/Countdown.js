@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export default class Countdown extends Component {
 	
 	constructor(props) {
@@ -65,25 +64,10 @@ export default class Countdown extends Component {
 	
 	render() {
 		
-		const style = {
-			timer : {
-				wrapper : {
-					display: "table-cell",
-					verticalAlign: "middle",
-					width: "80%"				
-				},
-				h3 : {
-					fontSize: "1.5em",
-					color: "#A6B1E1",
-					margin: "0 0"
-				}
-			}
-		};
-		
 		return (
 			
-			<div className="timer" style={style.timer.wrapper}>
-				<h3 style={style.timer.h3}>{this.state.segments.d} days &bull; {this.state.segments.h}  hours &bull; {this.state.segments.m} min &bull; {this.state.segments.s} secs </h3>
+			<div className="timer">
+				{this.state.segments.d} days &bull; {this.state.segments.h}  hours &bull; {this.state.segments.m} min &bull; {this.state.segments.s} secs 
 			</div>
 				
 		);

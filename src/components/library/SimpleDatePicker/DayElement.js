@@ -10,7 +10,7 @@ function DayElement(props) {
 	
 	
 	return (
-		<select id="date-day" onClick={props.validateDay} onChange={(e)=>{props.onChangeDay({day : Number(e.target.value)})}} value={props.selectedDay} style={props.styleObj}>{options}</select>
+		<select id="date-day" onClick={props.validateDay} onChange={(e)=>{props.onChangeDay({day : Number(e.target.value)})}} value={props.selectedDay} >{options}</select>
 	)
 }
 

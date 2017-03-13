@@ -14,7 +14,7 @@ function Help(props) {
 	return (
 		<div className="mode help" style={style.wrapper} >
 			<CloseButton floatAlign="right" clickAction={() => {props.closeButtonClickAction('input')}}/>
-			<h3>Help</h3>
+			<h2>Help</h2>
 			<p>Information...</p>
 		</div> 
 		

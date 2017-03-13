@@ -2,12 +2,7 @@ import React from 'react';
 
 function WeightDisplay(props) {
 	
-	const style = {
-		fontSize : ".75em"
-	}
-	
 	const weightObj = ozConverter(props.weightOz)
-	
 	
 	function ozConverter(ounces) {
 	
@@ -21,7 +16,7 @@ function WeightDisplay(props) {
 			};
 		}
 	
-	return <span>{weightObj.lb} <span style={style}>lbs.</span> {weightObj.oz} <span style={style}>oz.</span></span>
+	return <span>{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span></span>
 	
 }
 

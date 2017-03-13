@@ -22,8 +22,7 @@ function BabyImage(props) {
 			left: 0,
 			width: "100%",
 			height: "56.41026%",
-			zIndex: 1,
-			//transform: [{rotate: "45deg" }]
+			zIndex: 1
 		},
 		babyEyes : {
 			backgroundPosition: "100% 0%",

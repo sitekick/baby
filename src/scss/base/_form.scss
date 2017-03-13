@@ -1,0 +1,48 @@
+form  {
+	
+	select  {
+		font-size: 1.5rem;
+		border: 0;
+		background-color: #FFF;
+		color: $blue_dark;
+		margin-right: 5px;
+	}
+	
+	input {
+		font-size: 1.25em;
+		color: $blue_dark;
+	
+	&[type=text]{
+		font-size: 1.5rem;
+		padding: .2em 0 .2em .2em;
+		border: 3px solid $grey;
+		width: 92.5%;
+	}
+	&[type=radio]  {
+		margin: 5px 5px 0 0;
+		border: 1px solid red;
+		vertical-align: top;
+	}
+	
+	&[type=range]  { 
+		font-size: 1em;
+		width: 65%;
+	}
+	
+	&[type=submit] {
+		background-color: $blue_dark;
+		color: #FFF;
+		border-radius: 5px;
+		border: 3px solid $lavendar;
+		font-size: 1.25rem;
+		padding: .35em 0;
+		width: 95%;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+	}
+	
+	label  {
+		color: $blue_dark;
+	}
+}

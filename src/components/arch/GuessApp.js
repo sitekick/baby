@@ -29,12 +29,42 @@ export default class GuessApp extends Component{
 		
 		this.onGuessAdd = this.onGuessAdd.bind(this);
 		this.onGuessRemove = this.onGuessRemove.bind(this);
+		//this.askQuestion = this.askQuestion.bind(this);
+		//this.authorizeGuess = this.authorizeGuess.bind(this);
 		this.guessRecorded = this.guessRecorded.bind(this); 
 		this.saveJSON = this.saveJSON.bind(this);
 		this.onFieldChange = this.onFieldChange.bind(this);
 		this.editMode = this.editMode.bind(this);
 		this.saveSettings= this.saveSettings.bind(this);
 	}
+	
+/*
+	authorizeGuess(correct){
+		
+		if(correct) 
+		 this.state.questions.answers += 1;
+		
+		if(this.state.questions.answers >= 2){
+			//set mode
+			this.state.mode = 'thanks';
+			//remove pending state
+			let index = this.state.guesses.findIndex(_pending);
+			if(index != -1){
+				this.state.guesses[index].pending = false;
+			}
+			//record
+			this.saveJSON(this.guessRecorded);
+		} else if(this.state.questions.list.length === 0){
+			this.state.mode = 'deny';
+		} 
+		
+		this.setState(this.state);
+		
+		function _pending(entry){
+			return entry.pending === true;
+		}
+	}
+*/
 	
 	guessRecorded(msg){
 		console.log(msg);
@@ -52,6 +82,9 @@ export default class GuessApp extends Component{
 		
 		var data = Object.assign({},{settings : this.state.settings}, {guesses : this.state.guesses});
 		
+		//console.log(data);
+		//return;
+		
 		var newDataString = JSON.stringify(data);
 		var url = 'inc/process.php';
 		
@@ -67,7 +100,18 @@ export default class GuessApp extends Component{
 	    xhr.send(newDataString);
 	   
 	}
-
+	
+	/*
+askQuestion(){
+		
+		if(this.state.mode == 'confirm' && this.state.questions.list.length > 0) {
+			return this.state.questions.ask();
+		} else {
+			return null;
+		}
+	}
+*/
+	
 	saveSettings(updatedSettings){
 		
 		this.state.settings = updatedSettings;
@@ -107,17 +151,15 @@ export default class GuessApp extends Component{
 	render(){
 		
 		const style = {
-			wrapper : {
-				maxWidth : 600,
-				borderWidth: 3,
-				borderStyle: "solid",
-				margin: "2em auto"
-			}
-		}
-		
-		
+			backgroundColor : "#FFF",
+			maxWidth : 600,
+			borderRadius : 10,
+			border: "3px solid #B4869F",
+			margin: "2em auto"
+		};
+	
 		return (
-			<div className="wrapper" style={style.wrapper}>
+			<div className="app" style={style}>
 				
 				<Header appSettings={this.state.settings} menuMenuSelect={this.editMode} />
 				{/* INPUT */}
@@ -128,6 +170,8 @@ export default class GuessApp extends Component{
 					guessTableAlterGuesses={this.onGuessRemove} 
 					guessFormGuessMode={this.state.mode}
 					guessFormOnAdd={this.onGuessAdd}
+					//guessFormOnConfirm={this.askQuestion()}
+					//guessFormOnConfirmResponse ={this.authorizeGuess}
 					/>
 				}
 				{/* HELP */}

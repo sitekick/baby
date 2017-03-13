@@ -14,12 +14,12 @@ function Predictor(props){
 			
 			switch(true){
 				case count > 0:
-				return 'boy';
+				return 'Boy';
 				break;
 				case count < 0:
-				return 'girl'
+				return 'Girl'
 				default :
-				return 'unclear';
+				return 'Unclear';
 			}
 		},
 		weight : 0,
@@ -47,25 +47,12 @@ function Predictor(props){
 		stats.date += Date.UTC([data.day.year],[data.day.month],[data.day.day],now.getHours(),now.getMinutes());
 	}
 	
-	const style = {
-		tr :{
-			backgroundColor: (stats.genderStat() == 'boy') ? '#7CC6FE' : '#F3B2D9',
-			fontSize: "1.5em",
-			color: "#FFF",
-			borderRadius: 10
-		},
-		td : {
-			padding: ".5em 0 .5em .25em"
-		}
-	};
-	
-	
 	return (
-		<tr style={style.tr}>
-			<td style={style.td}><strong>Prediction</strong></td>
-			<td style={style.td}>{stats.genderStat()}</td>
-			<td style={style.td}><WeightDisplay weightOz={stats.weightStat()} /></td>
-			<td style={style.td}>{stats.dateStat()}</td>
+		<tr className={`predictor ${(stats.genderStat() === 'Girl') ? 'girl' : ''}`}>
+			<td><strong>Prediction</strong></td>
+			<td>{stats.genderStat()}</td>
+			<td><WeightDisplay weightOz={stats.weightStat()} /></td>
+			<td>{stats.dateStat()}</td>
 		</tr>
 	)
 }

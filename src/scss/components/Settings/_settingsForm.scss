@@ -1,0 +1,54 @@
+form.settings  {
+
+	input[type=submit]{
+		width: 50%;
+	}
+	
+	.appStatus  {
+		overflow: hidden;
+		height: 50px;
+		color: $blue_dark;
+		margin-bottom: 1em;
+		
+		h3  {
+			margin: 0;
+		}
+			
+		input[type=checkbox]  {
+			float: right;
+			font-size: 2em;
+		}
+	
+		p  {
+			font-size: .85em;
+			font-style: italic;
+			margin: 0;
+		}
+	}
+	
+	table  {
+		background-color: $grey;
+		color: $lavendar;
+		
+		h3 {
+			color: $blue_dark;
+		}
+		
+		tbody  {
+									
+			td  {
+				padding: .35em 0;
+			
+				p {
+					font-size: 1.5em;
+					margin: 0 0;
+				}
+			
+			
+			&:first-child {
+				text-indent: 5px;
+			}
+			}
+		}
+	}
+}

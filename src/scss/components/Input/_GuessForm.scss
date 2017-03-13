@@ -1,0 +1,72 @@
+.guess-form  {
+	margin: 1em 0;
+	width: 100%;
+	background-color: #E8EBF7;
+	border-radius: 10px;;
+	
+	h3 {
+		width: 100%;
+		background-color: #A6B1E1;
+		border-collapse: collapse;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		text-align: center;
+		color: #FFF;
+		padding: .25em 0;
+		margin: 0 0 .75em;
+		font-size: 2.25em;
+	}
+
+	form {
+			
+		p {
+			font-size: 1.5em;
+			margin : 0 0 1em;
+			position: relative;
+			
+			strong  {
+				color : #A6B1E1;
+				min-width: 90px;
+				display: inline-block;	
+			}
+		}
+	}
+	
+	table  {
+		width: 100%;
+		border-collapse: collapse;
+		border-radius: 10px;
+	
+		tbody  {
+			
+			tr {
+				
+			&.submit-row{
+			vertical-align: top;
+				
+				td {
+					width: 33%;
+				
+				&:first-child{
+					text-align: center;
+					font-size: 2em;
+				}
+				}
+			}	
+			}
+			
+			td {
+				
+			&.babyimg  {
+				vertical-align: middle;
+				width: 33%;
+				text-align: center;
+			}	
+			}
+		}
+	}
+}
+
+
+
+		

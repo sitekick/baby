@@ -133,147 +133,56 @@ export default class GuessForm extends Component {
 	
 		render() {
 			
-			const style = {
-					callout : {
-						element : {
-							margin: "1em 0",
-							width: "100%",
-							backgroundColor: "#E8EBF7",
-							borderRadius: 10,
-						},
-						h3 : {
-							width: "100%",
-							backgroundColor: "#A6B1E1",
-							borderCollapse: "collapse",
-							borderTopLeftRadius: 10,
-							borderTopRightRadius: 10,
-							textAlign: "center",
-							color: "#FFF",
-							padding: ".25em 0",
-							margin: "0 0 .75em",
-							fontSize: "2.25em"
-						},
-						input : {
-							display: "table",
-							verticalAlign: "top"
-						},
-						get inputClass() {
-							return Object.assign(this.element, this.input);
-						}
-					},
-					table : {
-						element : {
-							width: "100%",
-							borderCollapse: "collapse",
-							borderRadius: 10
-						},
-						tbody : {
-							babyimg : {
-								verticalAlign: "middle",
-								width: "33%",
-								textAlign: "center"
-							}
-						},
-					},
-					form : {
-						element : {
-							
-						},
-						field : {
-							text : {
-								fontSize: "1.5rem",
-								padding: ".2em 0 .2em .2em",
-								border: "3px solid #E8EBF7",
-								width: "92.5%",
-							},
-							radio : {
-								margin: "5px 5px 0 0",
-								border: "1px solid red",
-								verticalAlign: "top"
-							},
-							select : {
-								fontSize : "1.25rem"
-							},
-							range : { 
-								width: "65%"
-							},
-							submit: {
-								backgroundColor: "#2F4550",
-								color: "#FFF",
-								borderRadius: 5,
-								border: "3px solid #A6B1E1",
-								fontSize: "1.25rem",
-								padding: ".35em 0",
-								width: "95%",
-								textTransform: "uppercase",
-								cursor: "pointer"
-							}
-						},
-						p : {
-							element : {
-								fontSize: "1.5em",
-								margin : "0 0 1em",
-								position: "relative"
-							}, 
-							strong : {
-								color : "#A6B1E1",
-								minWidth: 90,
-								display: "inline-block"	
-							}
-						},
-						label : {
-							color: "#2F4550"
-						}
-					}
-			};
-			
-
 			return (
-				<div style={style.callout.element}>
-				<h3 style={style.callout.h3}>Enter your Guess about this Baby</h3>
-				<form style={style.form.element} onSubmit={this.onSubmit}>
-				<table style={style.table.element}>
-				<tbody>
-				<tr>
-				<td style={style.table.tbody.babyimg}>
-				<BabyImage gender={this.state.gender} ounces={this.state.weight} />
-				</td>
-				<td colSpan="2">
-					{/* Gender */}
-					<p style={style.form.p.element}><strong style={style.form.p.strong}>Gender</strong>
-						<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} style={style.form.field.radio} />
-						<label htmlFor="gender-boy">Boy </label>
-						<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} style={style.form.field.radio} />
-						<label htmlFor="gender-girl">Girl</label>
-						<ErrorMessage fieldName="gender" messageContent="Choose a gender" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
-					</p>
-					{/* Weight */}
-					<p style={style.form.p.element}><strong style={style.form.p.strong}>Weight </strong>
-					<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} style={style.form.field.range} />
-					<ErrorMessage fieldName="weight" messageContent="Select the weight" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
-					</p>
-					{/* Date */}
-					<p style={style.form.p.element}><strong style={style.form.p.strong}>Date </strong> <SimpleDatePicker componentName="guessFormDate" startDate={this.state.day} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" />
-					<ErrorMessage fieldName="day" messageContent="Select the day of birth" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
-					</p>
-				</td>
-				</tr>
-				<tr style={{verticalAlign: "top"}}>
-				<td style={{textAlign: "center",width:"33%",fontSize: "2em"}}>
-				<WeightDisplay weightOz={this.state.weight} />
-				</td>
-				<td style={{width:"33%"}}>
-				<p style={style.form.p.element} ><input id="name" name="name" type="text" data-validate='nonblank' value={this.state.name} placeholder="Your Name" onChange={this.onFieldChange} style={style.form.field.text}/>
-					<ErrorMessage fieldName="name" messageContent="Add your name" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
-					</p>
-				</td>
-				<td style={{width:"33%", textAlign: "left"}}>
-				<input id="submit" type="submit" value="Submit" style={style.form.field.submit}/>
-				</td>
-				</tr>
-				</tbody>
-				</table>
-				</form>
+				<div className="guess-form">
+					<h3>Enter your Guess about this Baby</h3>
+					<form onSubmit={this.onSubmit}>
+					<table>
+						<tbody>
+							<tr>
+								<td className="babyimg">
+									<BabyImage gender={this.state.gender} ounces={this.state.weight} />
+								</td>
+								<td colSpan="2">
+								{/* Gender */}
+								<p>
+									<strong>Gender</strong>
+									<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} />
+									<label htmlFor="gender-boy">Boy </label>
+									<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} />
+									<label htmlFor="gender-girl">Girl</label>
+									<ErrorMessage fieldName="gender" messageContent="Choose a gender" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
+								</p>
+								{/* Weight */}
+								<p>
+									<strong>Weight </strong>
+									<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} />
+									<ErrorMessage fieldName="weight" messageContent="Select the weight" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
+								</p>
+								{/* Date */}
+								<p>
+									<strong>Date </strong> <SimpleDatePicker componentName="guessFormDate" startDate={this.state.day} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" />
+									<ErrorMessage fieldName="day" messageContent="Select the day of birth" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
+								</p>
+								</td>
+							</tr>
+							<tr className="submit-row">
+								<td>
+									<WeightDisplay weightOz={this.state.weight} />
+								</td>
+								<td>
+									<p>
+										<input id="name" name="name" type="text" data-validate='nonblank' value={this.state.name} placeholder="Your Name" onChange={this.onFieldChange} />
+										<ErrorMessage fieldName="name" messageContent="Add your name" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
+									</p>
+								</td>
+								<td>
+									<input id="submit" type="submit" value="Submit" />
+									</td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
 				</div>
 				)
 		}
