@@ -4,6 +4,17 @@ form.settings  {
 		width: 50%;
 	}
 	
+	select[disabled] {
+		background-color: $grey;
+	}
+	
+	.display-weight {
+		width: 30%;
+		display: inline-block;
+		font-size: 1.25em;
+		color: $blue_dark;
+	}
+	
 	.appStatus  {
 		overflow: hidden;
 		height: 50px;
@@ -18,7 +29,7 @@ form.settings  {
 			float: right;
 			font-size: 2em;
 		}
-	
+		
 		p  {
 			font-size: .85em;
 			font-style: italic;
@@ -41,7 +52,12 @@ form.settings  {
 			
 				p {
 					font-size: 1.5em;
+					display: inline-block;
 					margin: 0 0;
+				}
+				
+				label {
+					font-size: 1.25em;
 				}
 			
 			

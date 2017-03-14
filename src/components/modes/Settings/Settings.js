@@ -10,15 +10,8 @@ export default class Settings extends Component {
 	
 	render() {
 		
-	const style = {
-		wrapper : {
-			width: "95%",
-			margin: "0 2.5% 1em"
-		}
-	}	
-		
 		return (
-			<div className="mode settings" style={style.wrapper}>
+			<div className="mode settings">
 			<CloseButton floatAlign="right" clickAction={() => {this.props.closeButtonClickAction('input')}}/>
 			<h2>Settings</h2>
 			<SettingsForm fieldValues={this.props.settingsData} settingsSubmit={this.props.settingsFormSettingsSubmit}/>

@@ -1,1 +1,63 @@
-{"settings":{"appStatus":true,"babyName":"Penelope W","message":"Lynette & Hunter are Expecting","dueDate":{"year":2017,"month":1,"day":8},"babyBorn":false,"birthDetails":{"gender":null,"weight":0,"date":{"year":null,"month":0,"day":29}}},"guesses":[{"name":"Hunter Wi","gender":"boy","weight":148,"day":{"month":0,"day":31,"year":2017},"pending":false},{"name":"Lynette W","gender":"girl","weight":122,"day":{"month":1,"day":2,"year":2017},"pending":false},{"name":"Penelpp","gender":"boy","weight":"106","day":{"month":2,"day":19,"year":2017},"pending":false},{"name":"Ray","gender":"boy","weight":"141","day":{"month":1,"day":25,"year":2017},"pending":true}]}
+{
+	"settings": {
+		"appStatus": true,
+		"header": "Penelope W",
+		"message": "Lynette & Hunter are Expecting",
+		"dueDate": {
+			"year": 2017,
+			"month": 1,
+			"day": 8
+		},
+		"birthDetails": {
+			"guessable" : ["gender","weight","date"],
+			"gender": "",
+			"weight": 0,
+			"date": {
+				"year": 0,
+				"month": 0,
+				"day": 0
+			}
+		}
+	},
+	"guesses": [{
+		"name": "Hunter Wi",
+		"gender": "boy",
+		"weight": 148,
+		"day": {
+			"month": 0,
+			"day": 31,
+			"year": 2017
+		},
+		"pending": false
+	}, {
+		"name": "Lynette W",
+		"gender": "girl",
+		"weight": 122,
+		"day": {
+			"month": 1,
+			"day": 2,
+			"year": 2017
+		},
+		"pending": false
+	}, {
+		"name": "Penelpp",
+		"gender": "boy",
+		"weight": "106",
+		"day": {
+			"month": 2,
+			"day": 19,
+			"year": 2017
+		},
+		"pending": false
+	}, {
+		"name": "Ray",
+		"gender": "boy",
+		"weight": "141",
+		"day": {
+			"month": 1,
+			"day": 25,
+			"year": 2017
+		},
+		"pending": true
+	}]
+}

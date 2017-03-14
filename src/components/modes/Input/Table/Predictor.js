@@ -48,12 +48,16 @@ function Predictor(props){
 	}
 	
 	return (
-		<tr className={`predictor ${(stats.genderStat() === 'Girl') ? 'girl' : ''}`}>
+		<table className="predictor">
+		<tbody>
+		<tr className={(stats.genderStat() === 'Girl') ? 'girl' : ''}>
 			<td><strong>Prediction</strong></td>
 			<td>{stats.genderStat()}</td>
 			<td><WeightDisplay weightOz={stats.weightStat()} /></td>
 			<td>{stats.dateStat()}</td>
 		</tr>
+		</tbody>
+		</table>
 	)
 }
 

@@ -6,17 +6,35 @@ table.guesses  {
 			color: $pink_dark;
 			text-transform: uppercase;
 			font-size: 1.125em;
+			text-align: left;
 		}
 	}
 	
 	tbody {
 		
 		tr  {
-			background-color: #FFF;
+			background-color: $grey;
 			
 			td  {
-			padding: .5em 0 .5em .5em;
 			font-size: 1.25em;
+			color: $blue_dark;
+			
+			&:nth-child(1){
+				width: 25%;
+			span {
+				color: $lavendar;
+			}
+			
+			}
+			&:nth-child(2){
+				width: 15%;
+			}
+			&:nth-child(3){
+				width: 25%;
+			}
+			&:nth-child(4){
+				width: 35%;
+			}
 			
 			&.weight {
 				
@@ -26,21 +44,8 @@ table.guesses  {
 			}	
 			}
 		
-		&.predictor {
-			background-color: $blue;
-			font-size: 1.35em;
-			color: #FFF;
-			
-			td  {
-				padding: .5em 0 .5em .25em;
-			}
-		
-		&.girl{
-			background-color: $pink;
-		}
-		}
 		&:nth-child(even){
-			background-color: #E8EBF7;
+			background-color: #FFF;
 		}
 		}
 		
@@ -61,4 +66,7 @@ table.guesses  {
 	}
 }
 
-	
+.scrollwrapper {
+	max-height: 300px;
+	overflow-y:auto;
+}	

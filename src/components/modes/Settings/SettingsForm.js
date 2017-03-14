@@ -9,21 +9,21 @@ export default class SettingsForm extends Component {
 		
 		this.state = {
 			appStatus : props.fieldValues.appStatus,
-			babyName : props.fieldValues.babyName,
+			header : props.fieldValues.header,
 			message : props.fieldValues.message,
 			dueDate : {
 				year : props.fieldValues.dueDate.year,
 				month : props.fieldValues.dueDate.month,
 				day : props.fieldValues.dueDate.day
 			},
-			babyBorn : props.fieldValues.babyBorn,
 			birthDetails : {
-				gender : null,
-				weight : 0,
+				guessable : props.fieldValues.birthDetails.guessable,
+				gender : props.fieldValues.birthDetails.gender,
+				weight : props.fieldValues.birthDetails.weight,
 				date : {
-					year : props.fieldValues.birthDetails.date.year,
-					month : props.fieldValues.birthDetails.date.month,				
-					day :  props.fieldValues.birthDetails.date.day
+					year : props.fieldValues.dueDate.year,
+					month : props.fieldValues.dueDate.month,				
+					day :  props.fieldValues.dueDate.day
 				}
 			}
 		}
@@ -32,6 +32,7 @@ export default class SettingsForm extends Component {
 		this.onFieldChange = this.onFieldChange.bind(this);
 		this.onBirthDetailsFieldChange = this.onBirthDetailsFieldChange.bind(this);
 		this.onDatePicker = this.onDatePicker.bind(this);
+		this.onConfigureGuesses = this.onConfigureGuesses.bind(this);
 		this.validatePicker = this.validatePicker.bind(this);
 		this.settingsSubmit = this.settingsSubmit.bind(this);
 	}
@@ -54,6 +55,45 @@ export default class SettingsForm extends Component {
 		Object.assign(this.state.birthDetails,{[e.target.name] : e.target.value});
 		
 		this.setState(this.state);
+	}
+	
+	isGuessable(detail){
+		
+		return this.state.birthDetails.guessable.indexOf(detail) >= 0
+		
+	}
+	
+	onConfigureGuesses(e) {
+		
+		let index = this.state.birthDetails.guessable.indexOf(e.target.value);
+		if(index >= 0){
+			this.state.birthDetails.guessable.splice(index, 1)
+		} else {
+			this.state.birthDetails.guessable.push(e.target.value)
+			this.state.birthDetails[e.target.value] = this.resetBirthDetail(e.target.value);
+		}
+		
+		this.setState(this.state);
+	}
+	
+	resetBirthDetail(detail){
+		
+		switch(detail){
+			case 'gender' :
+				return '';
+			break;
+			case 'weight' : 
+				return 0;
+			break;	
+			case 'date' : 
+			return {
+				year : this.state.dueDate.year,
+				month : this.state.dueDate.month,				
+				day :  this.state.dueDate.day
+			}
+			default : 
+			return false;
+		}
 	}
 	
 	onDatePicker(obj, name) {
@@ -83,7 +123,7 @@ export default class SettingsForm extends Component {
 		return (
 			<form className="settings" onSubmit={this.settingsSubmit}>
 				<div className="appStatus" >
-					<input type="checkbox" onChange={this.onFieldChange} checked={this.state.appStatus} />
+					<input type="checkbox" name="appStatus" onChange={this.onFieldChange} checked={this.state.appStatus} />
 					<h3>App Status</h3>
 						{(this.state.appStatus)  
 						? <p>Accepting guesses from friends and family</p>
@@ -93,53 +133,70 @@ export default class SettingsForm extends Component {
 				<table>
 				<tbody>
 					<tr>
-						<td><p>Babys Name</p></td>
+						<td><p>Header</p></td>
 						<td colSpan="2">
-							<input name="babyName" type="text" onChange={this.onFieldChange} value={this.state.babyName} />
+							<input name="header" type="text" onChange={this.onFieldChange} value={this.state.header} disabled={!this.state.appStatus}/>
 						</td></tr>
 					<tr>
 						<td><p>Message</p></td>
 						<td colSpan="2">
-							<input name="message" type="text" onChange={this.onFieldChange} value={this.state.message} />
+							<input name="message" type="text" onChange={this.onFieldChange} value={this.state.message} disabled={!this.state.appStatus} />
 						</td></tr>
 					<tr>
 						<td><p>Due Date</p></td>
 						<td colSpan="2">
-							<SimpleDatePicker componentName="settingsFormDueDate" startDate= {this.state.dueDate} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" />
+							<SimpleDatePicker componentName="settingsFormDueDate" startDate= {this.state.dueDate} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" disableComponent={!this.state.appStatus} />
 						</td></tr>
-					<tr>
-						<td><p>Baby Status</p></td>
-						<td colSpan="2">
-							<input name="babyBorn" type="checkbox" onChange={this.onFieldChange} checked={this.state.babyBorn} />
-						</td></tr>
+					{/* Birth Details:*/}
 					<tr>
 						<td colSpan="3">
-							<h3>Birth Details</h3>
+							<h3>Baby Details</h3>
 						</td></tr>
 					<tr>
-						{/* Birth Details:Gender */}
-						<td><p>Gender</p></td>
-						<td colSpan="2">
+						{/* Baby Details:Gender */}
+						<td>
+							<input type="checkbox" name="guessGender" value="gender" checked={this.isGuessable('gender')}onChange={this.onConfigureGuesses}/>
+							<p>Gender</p>
+						</td>
+							{!this.isGuessable('gender') 
+							?
+							<td colSpan="2">
 							<input id="gender-boy" checked={(this.state.birthDetails.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onBirthDetailsFieldChange} />
 							<label htmlFor="gender-boy">Boy </label>
 							<input id="gender-girl" checked={(this.state.birthDetails.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onBirthDetailsFieldChange} />
 							<label htmlFor="gender-girl">Girl</label>
-						</td></tr>
-					<tr>
-						{/* Birth Details:Weight */}
-						<td><p>Weight</p></td>
-							<td>
-								<WeightDisplay weightOz={this.state.birthDetails.weight} />
 							</td>
-							<td>
-								<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.birthDetails.weight} data-validate='touch' onChange={this.onBirthDetailsFieldChange} />
-							</td></tr>
+							: 
+							<td colSpan="2"><label>Participants may guess the gender</label></td>
+							}
+						</tr>
 					<tr>
-						{/* Birth Details:Date */}
-						<td><p>Day of Birth</p></td>
-						<td colSpan="2">
-							<SimpleDatePicker componentName="settingsFormBirthDate" startDate={this.state.birthDetails.date}   onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" />
-						</td></tr>
+						{/* Baby Details:Weight */}
+						<td>
+							<input type="checkbox" name="guessWeight" value="weight" checked={this.isGuessable('weight')}onChange={this.onConfigureGuesses}/>
+							<p>Weight</p>
+						</td>
+						{!this.isGuessable('weight') 
+						?
+						<td colSpan="2"><WeightDisplay weightOz={this.state.birthDetails.weight} /> <input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.birthDetails.weight} data-validate='touch' onChange={this.onBirthDetailsFieldChange} /></td>
+						 : 
+						 <td colSpan="2"><label>Participants may guess the weight</label></td>
+						 }
+					</tr>
+					<tr>
+						{/* Baby Details:Date */}
+						<td>
+						<input type="checkbox" name="guessDate" value="date" checked={this.isGuessable('date')}onChange={this.onConfigureGuesses}/>
+						<p>Day of Birth</p>
+						</td>
+						{!this.isGuessable('date')
+						?
+						<td colSpan="2"><SimpleDatePicker key="birthDetails" componentName="settingsFormBirthDate" startDate={this.state.birthDetails.date}  onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MDY" /></td>
+						:
+						<td colSpan="2"><label>Participants may guess the date of birth</label></td>
+						 }
+						</tr>
+						{/* Baby Details End */}
 					<tr>
 						{/* Save Settings */}
 						<td />

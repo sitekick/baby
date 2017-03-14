@@ -7,7 +7,7 @@ function Header(props) {
 			
 	return (
 		<header>
-			<h1>{props.appSettings.babyName}</h1>
+			<h1>{props.appSettings.header}</h1>
 			<div className="ribbon">
 				<div className="ribbon-cap left"></div>
 				<div className="ribbon-message"><p>{props.appSettings.message}</p></div>

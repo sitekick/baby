@@ -16,7 +16,7 @@ function WeightDisplay(props) {
 			};
 		}
 	
-	return <span>{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span></span>
+	return <span className="display-weight">{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span></span>
 	
 }
 

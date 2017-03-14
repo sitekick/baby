@@ -15,17 +15,20 @@ form  {
 	&[type=text]{
 		font-size: 1.5rem;
 		padding: .2em 0 .2em .2em;
-		border: 3px solid $grey;
+		border: 1px solid $grey;
 		width: 92.5%;
+	&[disabled] {
+		background-color: $grey;
+	}
 	}
 	&[type=radio]  {
 		margin: 5px 5px 0 0;
-		border: 1px solid red;
 		vertical-align: top;
 	}
 	
 	&[type=range]  { 
 		font-size: 1em;
+		margin: 0;
 		width: 65%;
 	}
 	

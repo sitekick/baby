@@ -29,10 +29,10 @@ function SimpleDatePicker(props) {
 	
 	return (
 		<span className="simple-date-picker">
-		<MonthElement months={_monthData()} onChangeMonth={onElementChange} validateMonth={props.validateDatePicker} selectedMonth={pickerMonth} /> 
-		<DayElement month={_monthData(pickerMonth)} validateDay={props.validateDatePicker} onChangeDay={onElementChange} selectedDay={pickerDay}  />
+		<MonthElement months={_monthData()} onChangeMonth={onElementChange} validateMonth={props.validateDatePicker} selectedMonth={pickerMonth} disableSelect={props.disableComponent} /> 
+		<DayElement month={_monthData(pickerMonth)} validateDay={props.validateDatePicker} onChangeDay={onElementChange} selectedDay={pickerDay}  disableSelect={props.disableComponent} />
 		{props.selectMode && props.selectMode === "MDY" &&
-		<YearElement selectedYear={pickerYear} onChangeYear={onElementChange} />
+		<YearElement selectedYear={pickerYear} onChangeYear={onElementChange} disableSelect={props.disableComponent} />
 		}
 		</span>
 	)

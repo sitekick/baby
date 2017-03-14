@@ -12,7 +12,7 @@ function Guess(props) {
 			{props.canEdit &&
 				<button onClick={function(){props.onRemove(props.index)}}>x</button>
 			} 
-				{props.name}</td>
+				<span>{props.guessNumber}.</span> {props.name} </td>
 			<td><div className={(props.gender === 'boy') ? 'gender boy' : 'gender girl'} /></td>
 			<td className="weight"><WeightDisplay weightOz={props.weight} /></td>
 			<td>{date.toDateString()}</td>

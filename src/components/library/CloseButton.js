@@ -1,25 +1,17 @@
-import React, {PropTypes} from 'react'
-
+import React, {PropTypes} from 'react';
 
 function CloseButton(props) {
 	
-	
 	const style = {
 		button : {
-			fontSize: "2em",
 			backgroundColor: "transparent",
 			border: 0,
-			cursor: "pointer",
-			float: (props.floatAlign) ? props.floatAlign : "none"
+			padding: 0,
+			cursor: "pointer"
 		}
-/*
-		align : {
-			float: (props.floatAlign) ? props.floatAlign : "none"
-		}
-*/
 	}
 	
-	return <button onClick={props.clickAction} style={style.button}>✕</button>
+	return <button className="closeButton" onClick={props.clickAction} style={style.button}>✕</button>
 		
 }
 

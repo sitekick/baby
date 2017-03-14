@@ -11,24 +11,40 @@
 		border: 3px solid $pink_dark;
 		margin: 2em auto;
 	
-	
-		h1 {
-			font-family: $chicle;
-			font-weight: 400;
-			color: $lavendar;
-			font-size: 4.5em;
-			letter-spacing: 1px;
-		}
+		.mode {
+			width: 95%;
+			margin: 0 2.5% 1em;
 		
-		h2 {
-			color: $pink_dark;
-			font-size: 1.75em;
-		}
+			.closeButton {
+				float: right;
+				font-size: 1.75em;
+				color: $pink_dark;
+				margin-right: 5px;
+			}
 		
-		h3 {
-			font-size: 1.6em;
 		}
 	
 	}
 	
+	h1 {
+		font-family: $chicle;
+		font-weight: 400;
+		color: $lavendar;
+		font-size: 4.5em;
+		letter-spacing: 1px;
+	}
+		
+	h2 {
+		color: $pink_dark;
+		font-size: 1.75em;
+	}
+	
+	h3 {
+		font-size: 1.6em;
+		font-weight: 300;
+	}
+	
+	label {
+		font-weight: 300;
+	}
 }
