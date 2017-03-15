@@ -44,7 +44,7 @@ function Predictor(props){
 		stats.weight += Number([data.weight]);
 		//calc date
 		let now = new Date();
-		stats.date += Date.UTC([data.day.year],[data.day.month],[data.day.day],now.getHours(),now.getMinutes());
+		stats.date += Date.UTC([data.date.year],[data.date.month],[data.date.day],now.getHours(),now.getMinutes());
 	}
 	
 	return (

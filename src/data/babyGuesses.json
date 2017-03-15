@@ -11,19 +11,15 @@
 		"birthDetails": {
 			"guessable" : ["gender","weight","date"],
 			"gender": "",
-			"weight": 0,
-			"date": {
-				"year": 0,
-				"month": 0,
-				"day": 0
-			}
+			"weight": 80,
+			"date": {}
 		}
 	},
 	"guesses": [{
 		"name": "Hunter Wi",
 		"gender": "boy",
 		"weight": 148,
-		"day": {
+		"date": {
 			"month": 0,
 			"day": 31,
 			"year": 2017
@@ -33,7 +29,7 @@
 		"name": "Lynette W",
 		"gender": "girl",
 		"weight": 122,
-		"day": {
+		"date": {
 			"month": 1,
 			"day": 2,
 			"year": 2017
@@ -43,7 +39,7 @@
 		"name": "Penelpp",
 		"gender": "boy",
 		"weight": "106",
-		"day": {
+		"date": {
 			"month": 2,
 			"day": 19,
 			"year": 2017
@@ -53,7 +49,7 @@
 		"name": "Ray",
 		"gender": "boy",
 		"weight": "141",
-		"day": {
+		"date": {
 			"month": 1,
 			"day": 25,
 			"year": 2017

@@ -20,11 +20,7 @@ export default class SettingsForm extends Component {
 				guessable : props.fieldValues.birthDetails.guessable,
 				gender : props.fieldValues.birthDetails.gender,
 				weight : props.fieldValues.birthDetails.weight,
-				date : {
-					year : props.fieldValues.dueDate.year,
-					month : props.fieldValues.dueDate.month,				
-					day :  props.fieldValues.dueDate.day
-				}
+				date : {}
 			}
 		}
 		
@@ -83,7 +79,7 @@ export default class SettingsForm extends Component {
 				return '';
 			break;
 			case 'weight' : 
-				return 0;
+				return 80;
 			break;	
 			case 'date' : 
 			return {
@@ -94,6 +90,22 @@ export default class SettingsForm extends Component {
 			default : 
 			return false;
 		}
+	}
+	
+	
+	setBirthDetailDefault(){
+		
+		if (Object.keys(this.props.fieldValues.birthDetails.date).length > 0 )
+			return this.props.fieldValues.birthDetails.date;
+		else 
+			return this.props.fieldValues.dueDate;
+	}
+	
+	componentWillMount() {
+		
+		this.state.birthDetails.date = this.setBirthDetailDefault();
+		this.setState(this.state);
+		
 	}
 	
 	onDatePicker(obj, name) {

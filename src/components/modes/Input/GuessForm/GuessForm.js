@@ -3,6 +3,7 @@ import BabyImage from './BabyImage';
 import ErrorMessage from './ErrorMessage';
 import SimpleDatePicker from '../../../library/SimpleDatePicker/SimpleDatePicker';
 import WeightDisplay from '../../../library/WeightDisplay';
+import LockIcon from '../../../library/LockIcon';
 
 export default class GuessForm extends Component {
 		
@@ -12,9 +13,10 @@ export default class GuessForm extends Component {
 			
 			this.state = {
 				name : '',
-				gender : '',
-				weight : 80,
-				day : this._resetStateObj('day'),
+				gender : null,
+				weight : null,
+				date : null,
+				settings : props.appSettings,
 				submitted : false,
 				valid : this._resetStateObj('valid')				
 			};
@@ -23,6 +25,7 @@ export default class GuessForm extends Component {
 			this.validateField = this.validateField.bind(this);
 			this.onDatePicker = this.onDatePicker.bind(this);	
 			this.validatePicker = this.validatePicker.bind(this);
+			this.isGuessable = this.isGuessable.bind(this);
 			this.onSubmit = this.onSubmit.bind(this);
 			
 		}
@@ -62,30 +65,58 @@ export default class GuessForm extends Component {
 		onDatePicker(obj) {
 			
 			this.setState((prevState, props)=>({
-				day : Object.assign(prevState.day,obj)
+				date : Object.assign(prevState.date,obj)
 			}));
 		}
 		
 		validatePicker() {
-			// just checking to see this field was clicked to prevent default date from submitting
-			
+			// just checking to see this field was clicked(on blur) to prevent default date from submitting
 			this.setState((prevState, props)=>({
-				valid : Object.assign(prevState.valid, {day : true})
+				valid : Object.assign(prevState.valid, {date : true})
 			}));
 		}
 
+		isGuessable(detail){
+			
+			return this.props.appSettings.birthDetails.guessable.indexOf(detail) >= 0 
+		}
+		
+		setGuessableDetails(){
+			
+			const details = this.props.appSettings.birthDetails;
+			
+			this.state.gender = this.isGuessable('gender') ? '' : details.gender; 
+			this.state.weight = this.isGuessable('weight') ? 80 : details.weight;
+			this.state.date = this.isGuessable('date') ? this._resetStateObj('date') : details.date;
+			
+			this.setState(this.state);
+			
+		}
+		
+		
+		componentWillMount(){
+			
+			this.setGuessableDetails();
+			
+		}
 		
 		_resetStateObj(mode){
 			
 			var returnObj;
 			
 			switch(mode){
-				case 'day' :
+				case 'date' :
 				var now = new Date();
 				returnObj =  {month : now.getMonth(), day : now.getDate(), year : now.getFullYear()};
 				break;
 				case 'valid' :
-				returnObj = {name : false, gender : false, weight : false, day : false};
+				
+				returnObj = {name : false, gender : true, weight : true, date : true};
+				//bypass validation flags for non guessablge fields
+				this.props.appSettings.birthDetails.guessable.map(function(detail){
+				 returnObj[detail] = false;
+				})
+
 				break;
 			}
 			
@@ -96,7 +127,6 @@ export default class GuessForm extends Component {
 			e.preventDefault();
 			
 			var preventSubmit = false;
-			
 			
 			for(let error in this.state.valid){
 				if(this.state.valid[error] === false){
@@ -114,7 +144,7 @@ export default class GuessForm extends Component {
 				name : this.state.name,
 				gender : this.state.gender,
 				weight : this.state.weight,
-				day : this.state.day,
+				date : this.state.date,
 				pending : true
 			};
 			
@@ -124,7 +154,7 @@ export default class GuessForm extends Component {
 						name : '',
 						gender : '',
 						weight : 80,
-						day : this._resetStateObj('day'),
+						date : this._resetStateObj('date'),
 						valid : this._resetStateObj('valid'),
 						submitted : false
 					}
@@ -147,22 +177,22 @@ export default class GuessForm extends Component {
 								{/* Gender */}
 								<p>
 									<strong>Gender</strong>
-									<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} />
+									<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} disabled={!this.isGuessable('gender')} />
 									<label htmlFor="gender-boy">Boy </label>
-									<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} />
-									<label htmlFor="gender-girl">Girl</label>
+									<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} disabled={!this.isGuessable('gender')} />
+									<label htmlFor="gender-girl">Girl</label> <LockIcon display={!this.isGuessable('gender') ? 'lavendar' : 'off'}/>
 									<ErrorMessage fieldName="gender" messageContent="Choose a gender" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								{/* Weight */}
 								<p>
-									<strong>Weight </strong>
-									<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} />
+									<strong>Weight</strong>
+									<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} disabled={!this.isGuessable('weight')} /> <LockIcon display={!this.isGuessable('weight') ? 'lavendar' : 'off'}/>
 									<ErrorMessage fieldName="weight" messageContent="Select the weight" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								{/* Date */}
 								<p>
-									<strong>Date </strong> <SimpleDatePicker componentName="guessFormDate" startDate={this.state.day} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" />
-									<ErrorMessage fieldName="day" messageContent="Select the day of birth" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
+									<strong>Date</strong><LockIcon display={!this.isGuessable('date') ? 'lavendar' : 'off'}/> <SimpleDatePicker componentName="guessFormDate" startDate={this.state.date} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" disableComponent={!this.isGuessable('date')} />
+									<ErrorMessage fieldName="date" messageContent="Select the date of birth" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								</td>
 							</tr>

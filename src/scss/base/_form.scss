@@ -6,7 +6,22 @@ form  {
 		background-color: #FFF;
 		color: $blue_dark;
 		margin-right: 5px;
+		
 	}
+	
+	select[disabled] {
+		background-color: $grey;
+		color: $lavendar;
+		-webkit-appearance: none;
+		appearance: none;
+		-moz-appearance: none;
+		text-indent: .01;
+		text-overflow: '';
+	}
+	
+	select[disabled]::-ms-expand {
+    	display: none;
+	}	
 	
 	input {
 		font-size: 1.25em;
@@ -19,6 +34,7 @@ form  {
 		width: 92.5%;
 	&[disabled] {
 		background-color: $grey;
+		color: $lavendar;
 	}
 	}
 	&[type=radio]  {
@@ -29,7 +45,7 @@ form  {
 	&[type=range]  { 
 		font-size: 1em;
 		margin: 0;
-		width: 65%;
+		width: 60%;
 	}
 	
 	&[type=submit] {

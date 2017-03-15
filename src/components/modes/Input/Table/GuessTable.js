@@ -18,7 +18,7 @@ function GuessTable(props) {
 					{props.babyGuesses.map( function(entry, index) {
 						
 					return (
-						<Guess key={index} pendingState={entry.pending} name={entry.name} onRemove={props.alterGuesses} gender={entry.gender} weight={entry.weight} day={entry.day} guessNumber={props.babyGuesses.length - index} canEdit={props.editMode.state}/>
+						<Guess key={index} pendingState={entry.pending} name={entry.name} onRemove={props.alterGuesses} gender={entry.gender} weight={entry.weight} date={entry.date} guessNumber={props.babyGuesses.length - index} canEdit={props.editMode.state}/>
 					);
 					})}
 				</tbody>

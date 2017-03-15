@@ -3,7 +3,7 @@ import WeightDisplay from '../../../library/WeightDisplay';
 
 function Guess(props) {	
 		
-		var date = new Date(props.day.year, props.day.month, props.day.day);
+		var date = new Date(props.date.year, props.date.month, props.date.day);
 		
 		return (
 		

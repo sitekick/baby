@@ -6,7 +6,7 @@ function YearElement(props) {
 	const years = [props.selectedYear-1,props.selectedYear,props.selectedYear+1];
 	
 	return (
-		<select id="date-year" onClick={props.validateYear} onChange={(e)=>{props.onChangeYear({year : Number(e.target.value)})}} value={props.selectedYear} disabled={props.disableSelect}>
+		<select id="date-year" name="year" onBlur={props.validateYear} onChange={(e)=>{props.onChangeYear({year : Number(e.target.value)})}} value={props.selectedYear} disabled={props.disableSelect}>
 		{
 			years.map(function(entry, i){
 				return (

@@ -5,18 +5,11 @@ import Predictor from './Table/Predictor';
 
 function Input(props){
 	
-	const style = {
-		wrapper : {
-			width: "95%",
-			margin: "0 2.5%"
-		}
-	}
-	
 	return (
-		<div className="mode input" style={style.wrapper} >
+		<div className="mode input">
 			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} editMode={props.guessTableEditMode} alterGuesses={props.guessTableAlterGuesses} />
 			<Predictor babyGuesses={props.guessTableBabyGuesses} />
-			<GuessForm onAdd={props.guessFormOnAdd} />
+			<GuessForm onAdd={props.guessFormOnAdd} appSettings={props.appSettings} />
 		</div>
 	)
 }

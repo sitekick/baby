@@ -69,16 +69,15 @@ export default class GuessApp extends Component{
 	}
 
 	saveSettings(updatedSettings){
-		
 		this.state.settings = updatedSettings;
 		this.setState(this.state);
-		this.saveJSON(this.guessRecorded);
+		//this.saveJSON(this.guessRecorded);
 	}
 	
 	onGuessAdd(guess) {
 		this.state.guesses.push(guess);
 		this.setState(this.state);
-		this.saveJSON(this.guessRecorded);
+		//this.saveJSON(this.guessRecorded);
 	}
 	
 	onGuessRemove(index) {
@@ -123,6 +122,7 @@ export default class GuessApp extends Component{
 				{/* INPUT */}
 				{this.state.display.modes[this.state.display.currentIndex] === 'input' &&
 					<Input 
+					appSettings={this.state.settings}
 					guessTableBabyGuesses={this.state.guesses}
 					guessTableEditMode={this.state.edit}
 					guessTableAlterGuesses={this.onGuessRemove} 
