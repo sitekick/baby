@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import Header from '../components/Header/Header';
 import Input from '../components/modes/Input/Input';
-import Help from '../components/modes/Help/Help';
-import Settings from '../components/modes/Settings/Settings';
+import Help from '../components/modes/Help';
+import Settings from '../components/modes/Settings';
 
 export default class GuessApp extends Component{
 	
@@ -40,13 +40,12 @@ export default class GuessApp extends Component{
 		console.log(msg);
 	}
 	
-	editMode(clicked) {
-
-		this.state.display.currentIndex = this.state.display.modes.findIndex( (display)=>{ return display === clicked})
+	editMode(source, target) {
+		
+		this.state.display.currentIndex = this.state.display.modes.findIndex( (display)=>{ return display === target})
 		this.setState(this.state);
 		
 	}
-	
 	
 	saveJSON(success){
 		
@@ -136,7 +135,7 @@ export default class GuessApp extends Component{
 				}
 				{/* SETTINGS */}
 				{this.state.display.modes[this.state.display.currentIndex] === 'settings' &&
-					<Settings settingsData={this.state.settings} closeButtonClickAction={this.editMode} settingsFormSettingsSubmit={this.saveSettings}/>
+					<Settings appSettings={this.state.settings} closeButtonClickAction={this.editMode} settingsSubmit={this.saveSettings}/>
 				}
 								
 			</div>

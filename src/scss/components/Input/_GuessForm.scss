@@ -78,6 +78,18 @@
 			}
 		}
 	}
+	
+	.lock-icon {
+		
+		span {
+			font-size: 12px;
+			padding: .1em .2em;
+			border: 1px solid $lavendar;
+			background: #FFF;
+			color: $lavendar;
+			left: 20px;
+		}
+	}
 }
 
 

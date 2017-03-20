@@ -1,28 +1,14 @@
 import React, {Component, PropTypes} from 'react';
-import SimpleDatePicker from '../../library/SimpleDatePicker/SimpleDatePicker';
-import WeightDisplay from '../../library/WeightDisplay';
+import SimpleDatePicker from '../library/SimpleDatePicker/SimpleDatePicker';
+import WeightDisplay from '../library/WeightDisplay';
+import CloseButton from '../library/CloseButton';
 
-export default class SettingsForm extends Component {
+export default class Settings extends Component {
 	
 	constructor(props){
 		super(props)
 		
-		this.state = {
-			appStatus : props.fieldValues.appStatus,
-			header : props.fieldValues.header,
-			message : props.fieldValues.message,
-			dueDate : {
-				year : props.fieldValues.dueDate.year,
-				month : props.fieldValues.dueDate.month,
-				day : props.fieldValues.dueDate.day
-			},
-			birthDetails : {
-				guessable : props.fieldValues.birthDetails.guessable,
-				gender : props.fieldValues.birthDetails.gender,
-				weight : props.fieldValues.birthDetails.weight,
-				date : {}
-			}
-		}
+		this.state = props.appSettings;
 		
 		this.onDatePicker = this.onDatePicker.bind(this);
 		this.onFieldChange = this.onFieldChange.bind(this);
@@ -30,7 +16,13 @@ export default class SettingsForm extends Component {
 		this.onDatePicker = this.onDatePicker.bind(this);
 		this.onConfigureGuesses = this.onConfigureGuesses.bind(this);
 		this.validatePicker = this.validatePicker.bind(this);
-		this.settingsSubmit = this.settingsSubmit.bind(this);
+		this.newSettingsMade = this.newSettingsMade.bind(this);
+	}
+	
+	componentWillMount() {
+		
+		this.state.birthDetails.date = this.setBirthDetailDefault();
+		this.setState(this.state);
 	}
 	
 	onFieldChange(e) {
@@ -92,20 +84,12 @@ export default class SettingsForm extends Component {
 		}
 	}
 	
-	
 	setBirthDetailDefault(){
 		
-		if (Object.keys(this.props.fieldValues.birthDetails.date).length > 0 )
-			return this.props.fieldValues.birthDetails.date;
+		if (Object.keys(this.props.appSettings.birthDetails.date).length > 0 )
+			return this.props.appSettings.birthDetails.date;
 		else 
-			return this.props.fieldValues.dueDate;
-	}
-	
-	componentWillMount() {
-		
-		this.state.birthDetails.date = this.setBirthDetailDefault();
-		this.setState(this.state);
-		
+			return this.props.appSettings.dueDate;
 	}
 	
 	onDatePicker(obj, name) {
@@ -120,19 +104,27 @@ export default class SettingsForm extends Component {
 		
 	}
 	
-	settingsSubmit(e) {
-		e.preventDefault();
-		
-		this.props.settingsSubmit(this.state);
-	}
-	
 	validatePicker(){
 		
+	}
+	
+	newSettingsMade(){
+		
+		let original = JSON.stringify(this.props.appSettings);
+		let submitted = JSON.stringify(this.state);
+		
+		if(original != submitted)
+			this.props.settingsSubmit(this.state);
+			
+		this.props.closeButtonClickAction('settings','input');
 	}
 	
 	render() {
 		
 		return (
+			<div className="mode settings">
+			<CloseButton clickAction={(e) => {this.newSettingsMade()}}/>
+			<h2>Settings</h2>
 			<form className="settings" onSubmit={this.settingsSubmit}>
 				<div className="appStatus" >
 					<input type="checkbox" name="appStatus" onChange={this.onFieldChange} checked={this.state.appStatus} />
@@ -209,20 +201,15 @@ export default class SettingsForm extends Component {
 						 }
 						</tr>
 						{/* Baby Details End */}
-					<tr>
-						{/* Save Settings */}
-						<td />
-						<td colSpan="2" >
-							<input type="submit" name="submitSettings" value="Save" />
-						</td>
-					</tr>
 			</tbody>
 			</table>
 			</form>
+			</div>
 		)
 	}
 }
 
-SettingsForm.propTypes = {
+Settings.propTypes = {
+	closeButtonClickAction : PropTypes.func.isRequired,
 	settingsSubmit : PropTypes.func.isRequired
 }

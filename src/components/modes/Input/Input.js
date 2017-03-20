@@ -7,8 +7,8 @@ function Input(props){
 	
 	return (
 		<div className="mode input">
-			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} editMode={props.guessTableEditMode} alterGuesses={props.guessTableAlterGuesses} />
-			<Predictor babyGuesses={props.guessTableBabyGuesses} />
+			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} editMode={props.guessTableEditMode} alterGuesses={props.guessTableAlterGuesses} appSettings={props.appSettings} />
+			<Predictor babyGuesses={props.guessTableBabyGuesses} appSettings={props.appSettings} />
 			<GuessForm onAdd={props.guessFormOnAdd} appSettings={props.appSettings} />
 		</div>
 	)

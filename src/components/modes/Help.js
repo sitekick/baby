@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import CloseButton from '../../library/CloseButton';
+import CloseButton from '../library/CloseButton';
 
 
 function Help(props) {
@@ -13,7 +13,7 @@ function Help(props) {
 	
 	return (
 		<div className="mode help" style={style.wrapper} >
-			<CloseButton floatAlign="right" clickAction={() => {props.closeButtonClickAction('input')}}/>
+			<CloseButton floatAlign="right" clickAction={() => {props.closeButtonClickAction('help', 'input')}}/>
 			<h2>Help</h2>
 			<p>Information...</p>
 		</div> 

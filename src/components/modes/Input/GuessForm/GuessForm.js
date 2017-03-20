@@ -163,9 +163,17 @@ export default class GuessForm extends Component {
 	
 		render() {
 			
+			let headerText;
+			if(this.state.settings.appStatus) {
+				headerText = 'Enter your Guess about this Baby';
+			} else {
+				headerText = 'No Longer Accepting Guesses';
+			}
+			
 			return (
 				<div className="guess-form">
-					<h3>Enter your Guess about this Baby</h3>
+					
+					<h3>{headerText}</h3>
 					<form onSubmit={this.onSubmit}>
 					<table>
 						<tbody>
@@ -177,21 +185,22 @@ export default class GuessForm extends Component {
 								{/* Gender */}
 								<p>
 									<strong>Gender</strong>
-									<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} disabled={!this.isGuessable('gender')} />
+									<input id="gender-boy" checked={(this.state.gender == 'boy') ? true : false} name="gender" type="radio" data-validate='selection' value="boy" onChange={this.onFieldChange} disabled={!this.isGuessable('gender') || !this.state.settings.appStatus } />
 									<label htmlFor="gender-boy">Boy </label>
-									<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} disabled={!this.isGuessable('gender')} />
+									<input id="gender-girl" checked={(this.state.gender == 'girl') ? true : false} name="gender" type="radio" data-validate='selection' value="girl" onChange={this.onFieldChange} disabled={!this.isGuessable('gender') || !this.state.settings.appStatus } />
 									<label htmlFor="gender-girl">Girl</label> <LockIcon display={!this.isGuessable('gender') ? 'lavendar' : 'off'}/>
 									<ErrorMessage fieldName="gender" messageContent="Choose a gender" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								{/* Weight */}
 								<p>
 									<strong>Weight</strong>
-									<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} disabled={!this.isGuessable('weight')} /> <LockIcon display={!this.isGuessable('weight') ? 'lavendar' : 'off'}/>
+									<input id="weight" name="weight" type="range" min="80" max="224" step="1" value={this.state.weight} data-validate='touch' onChange={this.onFieldChange} disabled={!this.isGuessable('weight') || !this.state.settings.appStatus } /> <LockIcon display={!this.isGuessable('weight') ? 'lavendar' : 'off'}/>
 									<ErrorMessage fieldName="weight" messageContent="Select the weight" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								{/* Date */}
 								<p>
-									<strong>Date</strong><LockIcon display={!this.isGuessable('date') ? 'lavendar' : 'off'}/> <SimpleDatePicker componentName="guessFormDate" startDate={this.state.date} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" disableComponent={!this.isGuessable('date')} />
+									<strong>Date</strong>
+									<SimpleDatePicker componentName="guessFormDate" startDate={this.state.date} onChangeDate={this.onDatePicker} validateDatePicker={this.validatePicker} selectMode="MD" disableComponent={!this.isGuessable('date') || !this.state.settings.appStatus } /> <LockIcon display={!this.isGuessable('date') ? 'lavendar' : 'off'}/>
 									<ErrorMessage fieldName="date" messageContent="Select the date of birth" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 								</p>
 								</td>
@@ -201,13 +210,17 @@ export default class GuessForm extends Component {
 									<WeightDisplay weightOz={this.state.weight} />
 								</td>
 								<td>
+									{this.state.settings.appStatus &&
 									<p>
 										<input id="name" name="name" type="text" data-validate='nonblank' value={this.state.name} placeholder="Your Name" onChange={this.onFieldChange} />
 										<ErrorMessage fieldName="name" messageContent="Add your name" formSubmitted={this.state.submitted} fieldValidation={this.state.valid} />
 									</p>
+									}
 								</td>
 								<td>
+									{this.state.settings.appStatus &&
 									<input id="submit" type="submit" value="Submit" />
+									}
 									</td>
 							</tr>
 						</tbody>

@@ -36,6 +36,22 @@ form  {
 		background-color: $grey;
 		color: $lavendar;
 	}
+	&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		color: $blue_dark;
+		opacity: 1;
+	}
+	&::-moz-placeholder { /* Firefox 19+ */
+		color: $blue_dark;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder { /* IE 10+ */
+		color: $blue_dark;
+		opacity: 1;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+		color: $blue_dark;
+		opacity: 1;
+	}
 	}
 	&[type=radio]  {
 		margin: 5px 5px 0 0;
@@ -64,4 +80,6 @@ form  {
 	label  {
 		color: $blue_dark;
 	}
+	
+	
 }

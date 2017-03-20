@@ -16,19 +16,31 @@ table.predictor {
 				width: 25%;
 			}
 			&:nth-child(2){
-				width: 15%;
+				width: 20%;
 			}
 			&:nth-child(3){
 				width: 25%;
 			}
 			&:nth-child(4){
-				width: 35%;
+				width: 30%;
 			}
 			}
 		
 		&.girl{
 			background-color: $pink;
 		}
+		}
+	}
+	
+	.lock-icon {
+		
+		span {
+			font-size: 12px;
+			padding: .1em .2em;
+			border: 1px solid $blue;
+			background: #FFF;
+			color: $blue;
+			left: 20px;
 		}
 	}
 }

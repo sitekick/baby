@@ -27,8 +27,8 @@ export default class Menu extends Component {
 			<div className="menu">
 				<i onClick={this.handleClick} >⋮
 				<ul> 
-					<li><a href="#" onClick={()=> {this.props.menuSelect('help')}}>Help</a></li>
-					<li><a href="#" onClick={()=> {this.props.menuSelect('settings')}}>Settings</a></li>
+					<li><a href="#" onClick={()=> {this.props.menuSelect('menu','help')}}>Help</a></li>
+					<li><a href="#" onClick={()=> {this.props.menuSelect('menu','settings')}}>Settings</a></li>
 				</ul>
 				</i>
 			</div>

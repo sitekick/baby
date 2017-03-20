@@ -1,0 +1,46 @@
+import React, {PropTypes, Component} from 'react';
+
+import SettingsForm from './SettingsForm';
+
+export default class Settings extends Component {
+	
+	constructor(props) {
+		super(props)
+		
+		this.state = {
+			appStatus : props.appSettings.appStatus,
+			header : props.appSettings.header,
+			message : props.appSettings.message,
+			dueDate : {
+				year : props.appSettings.dueDate.year,
+				month : props.appSettings.dueDate.month,
+				day : props.appSettings.dueDate.day
+			},
+			birthDetails : {
+				guessable : props.appSettings.birthDetails.guessable,
+				gender : props.appSettings.birthDetails.gender,
+				weight : props.appSettings.birthDetails.weight,
+				date : {}
+			}
+		}
+	}
+	
+	
+	
+	render() {
+		
+		return (
+			<div className="mode settings">
+			<CloseButton clickAction={(e) => {this.props.closeButtonClickAction('settings', 'input')}}/>
+			<h2>Settings</h2>
+			<SettingsForm appSettings={this.props.appSettings} settingsSubmit={this.props.settingsFormSettingsSubmit}/>
+			</div>
+		)
+		
+	}
+}
+
+Settings.propTypes = {
+	closeButtonClickAction : PropTypes.func.isRequired,
+	settingsFormSettingsSubmit: PropTypes.func.isRequired
+}

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import WeightDisplay from '../../../library/WeightDisplay';
+import LockIcon from '../../../library/LockIcon';
 
 function Predictor(props){
 	
@@ -33,6 +34,13 @@ function Predictor(props){
 		},
 	};
 	
+	var guessable = props.appSettings.birthDetails.guessable;
+	
+	function isGuessable(detail){
+		return guessable.indexOf(detail) >= 0
+	}
+
+	
 	for(let guess in props.babyGuesses){
 		
 		//counter
@@ -52,9 +60,9 @@ function Predictor(props){
 		<tbody>
 		<tr className={(stats.genderStat() === 'Girl') ? 'girl' : ''}>
 			<td><strong>Prediction</strong></td>
-			<td>{stats.genderStat()}</td>
-			<td><WeightDisplay weightOz={stats.weightStat()} /></td>
-			<td>{stats.dateStat()}</td>
+			<td>{stats.genderStat()} <LockIcon display={!isGuessable('gender') ? 'white' : 'off'} /></td>
+			<td><WeightDisplay weightOz={stats.weightStat()} /> <LockIcon display={!isGuessable('weight') ? 'white' : 'off'} /></td>
+			<td>{stats.dateStat()} <LockIcon display={!isGuessable('date') ? 'white' : 'off'}/></td>
 		</tr>
 		</tbody>
 		</table>

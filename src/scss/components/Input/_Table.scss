@@ -19,6 +19,10 @@ table.guesses  {
 			font-size: 1.25em;
 			color: $blue_dark;
 			
+			&.locked{
+				opacity: .5;
+			}
+			
 			&:nth-child(1){
 				width: 25%;
 			span {
@@ -27,13 +31,13 @@ table.guesses  {
 			
 			}
 			&:nth-child(2){
-				width: 15%;
+				width: 20%;
 			}
 			&:nth-child(3){
 				width: 25%;
 			}
 			&:nth-child(4){
-				width: 35%;
+				width: 30%;
 			}
 			
 			&.weight {
@@ -49,7 +53,7 @@ table.guesses  {
 		}
 		}
 		
-		.gender {
+		div.gender-icon {
 				background-image: url(../img/babySlices.png);
 				background-repeat: no-repeat;
 				background-size: 200% 400%;

@@ -8,7 +8,8 @@ export default class Countdown extends Component {
 		
 		this.state = {
 			dueDateObj : new Date(props.dueDate.year,props.dueDate.month,props.dueDate.day),
-			segments : { d: 0, h: 0, m: 0, s: 0 }
+			segments : { d: 0, h: 0, m: 0, s: 0 },
+			countdown : false
 		};
 		
 		//set initial time
@@ -36,8 +37,17 @@ export default class Countdown extends Component {
 	
 	_tickCount() {
 		
-		const remainingMillis = this.state.dueDateObj.getTime() - Date.now();		
-		this.setState({segments: this._formatCount(remainingMillis) });
+		let targetTime = this.state.dueDateObj.getTime();
+		let remainingTime = targetTime  - Date.now();
+		let countdown = targetTime > Date.now() ? true : false;
+		
+		const remainingMillis = ( countdown ) ? remainingTime : 0;	
+		this.setState({
+			countdown : countdown,
+			segments: this._formatCount(remainingMillis)
+			}
+			);
+
 
 	}
 	
@@ -63,13 +73,13 @@ export default class Countdown extends Component {
 	}
 	
 	render() {
+		let message;
+		if(this.state.countdown){
+			message = `${this.state.segments.d} days • ${this.state.segments.h}  hours • ${this.state.segments.m} min • ${this.state.segments.s} secs`;
+		} else {
+			message = 'The Due Date has Passed!';
+		}
 		
-		return (
-			
-			<div className="timer">
-				{this.state.segments.d} days &bull; {this.state.segments.h}  hours &bull; {this.state.segments.m} min &bull; {this.state.segments.s} secs 
-			</div>
-				
-		);
+		return <div className="timer">{message}</div>;
 	}
 }
