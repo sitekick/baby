@@ -3,13 +3,9 @@
 		"appStatus": true,
 		"header": "Penelope W",
 		"message": "Lynette & Hunter are Expecting",
-		"dueDate": {
-			"year": 2017,
-			"month": 1,
-			"day": 8
-		},
+		"dueDate": {},
 		"birthDetails": {
-			"guessable" : ["gender","date"],
+			"guessable" : ["gender","weight","date"],
 			"gender": "",
 			"weight": 80,
 			"date": {}

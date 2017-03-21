@@ -68,6 +68,7 @@ export default class GuessApp extends Component{
 	}
 
 	saveSettings(updatedSettings){
+		console.log('save', updatedSettings)
 		this.state.settings = updatedSettings;
 		this.setState(this.state);
 		//this.saveJSON(this.guessRecorded);

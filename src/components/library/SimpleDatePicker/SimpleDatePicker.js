@@ -40,7 +40,7 @@ function SimpleDatePicker(props) {
 
 SimpleDatePicker.propTypes = {
 	onChangeDate : React.PropTypes.func.isRequired,
-	validateDatePicker : React.PropTypes.func.isRequired
+	validateDatePicker : React.PropTypes.func
 }
 
 export default SimpleDatePicker;
