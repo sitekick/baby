@@ -31,7 +31,7 @@ form  {
 		font-size: 1.5rem;
 		padding: .2em 0 .2em .2em;
 		border: 1px solid $grey;
-		width: 92.5%;
+// 		width: 92.5%;
 	&[disabled] {
 		background-color: $grey;
 		color: $lavendar;
@@ -53,15 +53,19 @@ form  {
 		opacity: 1;
 	}
 	}
-	&[type=radio]  {
-		margin: 5px 5px 0 0;
+	&[type=radio] {
+		margin-top: 5px;
 		vertical-align: top;
+	}
+	
+	&[type=checkbox]{
+		
 	}
 	
 	&[type=range]  { 
 		font-size: 1em;
 		margin: 0;
-		width: 60%;
+// 		width: 60%;
 	}
 	
 	&[type=submit] {
@@ -74,6 +78,12 @@ form  {
 		width: 95%;
 		text-transform: uppercase;
 		cursor: pointer;
+	
+	&[disabled]{
+		opacity: .5;
+		cursor: default;
+	}
+	
 	}
 	}
 	

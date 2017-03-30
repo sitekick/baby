@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-
 import Header from '../components/Header/Header';
 import Input from '../components/modes/Input/Input';
 import Help from '../components/modes/Help';
@@ -68,7 +67,6 @@ export default class GuessApp extends Component{
 	}
 
 	saveSettings(updatedSettings){
-		console.log('save', updatedSettings)
 		this.state.settings = updatedSettings;
 		this.setState(this.state);
 		//this.saveJSON(this.guessRecorded);

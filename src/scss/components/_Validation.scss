@@ -1,0 +1,13 @@
+.validation-field {
+	position: relative;
+	
+	.error-message {
+		position: absolute;
+		
+		
+		text-transform: uppercase;
+		color: $lavendar;
+		font-size: 10px;
+		font-size: .8rem;
+	}
+}

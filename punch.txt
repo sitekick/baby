@@ -2,5 +2,5 @@ Form switch
 Help screen
 √ Configurable table data
 √ Save form behavior
-Validate settings form
+√ Validate settings form
 √ Timer past due date

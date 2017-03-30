@@ -10,13 +10,13 @@ function DayElement(props) {
 	
 	
 	return (
-		<select id="date-day" name="day" onBlur={props.validateDay} onChange={(e)=>{props.onChangeDay({day : Number(e.target.value)})}} value={props.selectedDay} disabled={props.disableSelect} >{options}</select>
+		<select id="date-day" name="day" onFocus={(e) => props.focusDay(e)} onChange={(e)=>{props.onChangeDay(e)}} value={props.selectedDay} disabled={props.disableSelect} >{options}</select>
 	)
 }
 
 DayElement.propTypes = {
 	onChangeDay : React.PropTypes.func.isRequired,
-	validateDay : React.PropTypes.func
+	focusDay : React.PropTypes.func
 }
 
 export default DayElement;

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 function MonthElement(props) {
 	
 	return (
-		<select id="date-month" name="month" onBlur={props.validateMonth} onChange={(e)=>{props.onChangeMonth({month : Number(e.target.value)})}} value={props.selectedMonth} disabled={props.disableSelect}>{
+		<select id="date-month" name="month" onFocus={(e) => props.focusMonth(e)} onChange={(e)=>{props.onChangeMonth(e)}} value={props.selectedMonth} disabled={props.disableSelect}>{
 			props.months.map(function(entry, i){
 				return (
 					<option key={i} value={i}>{entry[0]}</option>
@@ -16,7 +16,7 @@ function MonthElement(props) {
 
 MonthElement.propTypes = {
 	onChangeMonth : React.PropTypes.func.isRequired,
-	validateMonth: React.PropTypes.func
+	focusMonth: React.PropTypes.func
 }
 
 export default MonthElement;
