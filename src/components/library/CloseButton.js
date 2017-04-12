@@ -11,7 +11,7 @@ function CloseButton(props) {
 		}
 	}
 	
-	return <button className="closeButton" onClick={props.clickAction} style={style.button}>✕</button>
+	return <button className="close-button" onClick={props.clickAction} style={style.button}>✕</button>
 		
 }
 

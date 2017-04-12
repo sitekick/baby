@@ -1,5 +1,7 @@
 form.settings  {
-
+	margin-bottom: 1em;
+	
+	
 	input[type=submit]{
 		width: 50%;
 	}
@@ -52,7 +54,7 @@ form.settings  {
 					color: $lavendar;
 				
 				&.inner{
-					font-size: 1.25em;
+					font-size: 1.15em;
 					color: $blue_dark;
 				}
 				}
@@ -103,8 +105,5 @@ form.settings  {
 		margin: 5px;
 		border-radius: 5px;
 		}
-
 	}
-	
-		
 }

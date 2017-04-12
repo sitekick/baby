@@ -28,6 +28,21 @@ header  {
 				margin: 0;
 				margin-top: 8;
 			}	
+		
+		@include screen-medium {
+			left: -4px;
+			right: -4px;
+		}
+		
+		@include screen-small {
+			left: 0;
+			right: 0;
+			border: none;
+			border-top: 2px solid $pink_dark;
+			border-bottom: 2px solid $pink_dark;
+		}
+		
+		
 		}
 	
 		.ribbon-cap {
@@ -47,6 +62,21 @@ header  {
 			background-position: -48px 0;
 			right: -48px;
 		}	
+		
+		@include screen-medium {
+			
+		&.left{
+			left: -26px;
+		}
+		&.right{
+			right: -26px;
+		}		
+		}
+		
+		@include screen-small {
+			display: none;
+		}
+		
 		}
 	
 	}

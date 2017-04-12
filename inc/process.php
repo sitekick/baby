@@ -2,7 +2,7 @@
 
 
 $json = file_get_contents('php://input');
-$fp = fopen('../src/data/babyGuesses.json', 'w');
+$fp = fopen('/src/data/babyGuesses.json', 'w');
 
 if (flock($fp, LOCK_EX)) {
     fwrite($fp,$json);

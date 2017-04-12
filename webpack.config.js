@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-	entry: './app.js',
+	entry: ['babel-polyfill', './app.js'],
 	output : {
 		filename: 'bundle.js',
 		path: '/users/hunterw/sites/omv.imac/react/baby/'
@@ -8,20 +10,38 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
-				loaders: ['react-hot-loader','babel-loader']
+				exclude: /(node_modules|arch)/,
+				use: ['react-hot-loader','babel-loader']
 			},
 			{
 				test: /\.scss$/,
-				loader: 'style-loader!css-loader!sass-loader'
+				use: [
+					'style-loader', {
+						loader: 'css-loader',
+						options : {
+							importLoaders: 1
+						}
+					},
+					'postcss-loader',
+					'sass-loader'
+				]
 			},
 			{
 				test: /\.png$/,
-				loader: 'url-loader!img-loader'
-			}
+				use: ['url-loader','img-loader']
+			},
+			{
+				test: /\.modernizrrc.js$/,
+				use: 'modernizr-loader'
+				
+      		},
+	  		{
+	  			test: /\.modernizrrc(\.json)?$/,
+	  			use: ['modernizr-loader','json-loader']
+	  		}
 		]
-		
 	},
+	devtool: 'source-map',
 	devServer: {
     	proxy: { "/api" : {
 	    	target: "http://baby.imac",
@@ -29,5 +49,10 @@ module.exports = {
     	}
 	    	
       }
-	}
+	},
+	resolve: {
+    	alias: {
+			modernizr$: path.resolve(__dirname, "/users/hunterw/sites/omv.imac/react/baby/.modernizrrc")
+	    }
+  	}
 }

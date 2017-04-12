@@ -63,7 +63,7 @@ function BabyImage(props) {
 	};
 	
 	return (
-		<div style={style.babyWrap}>
+		<div className="baby-image" style={style.babyWrap}>
 			<div style={style.babyHead}>
 				<div className="eyes" style={style.applySlice('eyes')} />
 				<div className="pacifier" style={style.applySlice('pacifier')} />

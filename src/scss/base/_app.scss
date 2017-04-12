@@ -1,7 +1,22 @@
+body {
+	padding: 0;
+	margin: 0;
+	
+	&.pink {
+		background-color: $pink_shade;
+	
+	@include screen-small {
+		background-color: #FFF;
+	}
+	
+	}
+}
+
 .app {
 	
 	font-family: $cabin;
 	font-weight: 400;
+	overflow: hidden;
 		
 	.wrapper {
 		background-color : #FFF;
@@ -13,17 +28,34 @@
 	
 		.mode {
 			width: 95%;
-			margin: 0 2.5% 1em;
-		
-			.closeButton {
+			margin: 0 2.5%;
+			overflow: hidden;
+			
+			.component-set {
+				margin-bottom: 1em;
+			}
+			
+			
+			
+			.close-button {
 				float: right;
 				font-size: 1.75em;
 				color: $pink_dark;
 				margin-right: 5px;
 			}
-		
 		}
 		
+	@include screen-medium {
+		margin: 2em 50px;
+	}
+	
+	
+	@include screen-small {
+		margin: 0;
+		max-width: 100%;
+		border: none;
+		border-radius: 0;
+	}
 	
 	}
 	
@@ -49,6 +81,12 @@
 	label {
 		font-weight: 300;
 	}
-		
+
+@include screen-medium {
+	//border: 1px solid green;
+}
+@include screen-small {
+	//border: 1px solid red;
+}		
 
 }

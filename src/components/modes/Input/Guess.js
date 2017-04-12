@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
-import WeightDisplay from '../../../library/WeightDisplay';
+import WeightDisplay from '../../library/WeightDisplay';
+import MonthMaker from '../../library/MonthMaker';
 
 var classNames = require('classnames');
 
+
 function Guess(props) {	
 		
-		var date = new Date(props.date.year, props.date.month, props.date.day);
 		var guessable = props.guessableFields;
 		
 		function isGuessable(detail){
@@ -22,8 +23,6 @@ function Guess(props) {
 			);
 		}
 		
-		var rowClass = classNames({pending : props.pendingState === true})
-		
 		var genderIconClass = classNames(
 			'gender-icon',
 			{boy : props.gender === 'boy'},
@@ -32,15 +31,14 @@ function Guess(props) {
 		
 		return (
 		
-		<tr className={rowClass} >
+		<tr>
 			<td >
 			{props.canEdit &&
-				<button onClick={function(){props.onRemove(props.index)}}>x</button>
-			} 
-				<span>{props.guessNumber}.</span> {props.name} </td>
+				<button title="click to remove" onClick={function(){props.onRemove(props.index)}}>✕</button>
+			} {props.name} </td>
 			<td className={cellClass('gender')}><div className={genderIconClass} /></td>
 			<td className={cellClass('weight')}><WeightDisplay weightOz={props.weight} /></td>
-			<td className={cellClass('date')}>{date.toDateString()}</td>
+			<td className={cellClass('date')}><MonthMaker mode="abbr" monthIntJS={props.date.month}/> {`${props.date.day}, ${props.date.year}`}</td>
 		</tr>
 		)
 	

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Validation from '../library/Validation';
 import SimpleDatePicker from '../library/SimpleDatePicker/SimpleDatePicker';
 import WeightDisplay from '../library/WeightDisplay';
+import PasswordProtect from '../library/PasswordProtect';
 import CloseButton from '../library/CloseButton';
 import ErrorMessage from '../library/ErrorMessage';
 import update from 'immutability-helper';
@@ -13,6 +14,7 @@ export default class Settings extends Component {
 		
 		this.state = {
 			settings : Object.assign({},props.appSettings),
+			//settings : props.appSettings,
 			valid : {},
 			submitted : false
 		}
@@ -111,7 +113,14 @@ export default class Settings extends Component {
 								valid : {$set : updatedValidObj}
 							})
 						}
-						
+						//if no guessable fields, set appStatus to false
+						if(delta.settings.birthDetails.guessable.length === 0){
+							delta = update(delta,{
+								settings: {
+									appStatus : {$set : false}
+								}
+							})
+						}
 						this.setState(delta);
 					}
 				}
@@ -132,6 +141,14 @@ export default class Settings extends Component {
 					} else {
 						this.setState({submitted : true})
 					}
+				}
+			},
+			PasswordProtect : {
+				CloseButtonClickAction : () => {
+					this.props.closeButtonClickAction('settings','input');
+				},
+				authorizeAction : () => {
+					//console.log('authorized')
 				}
 			},
 			SimpleDatePicker : {
@@ -218,6 +235,7 @@ export default class Settings extends Component {
 	render() {
 		
 		return (
+			<PasswordProtect authKey={this.state.settings.authKey} CloseButtonClickAction={this.methods.PasswordProtect.CloseButtonClickAction} authorizeAction={this.methods.PasswordProtect.authorizeAction} >
 			<div className="mode settings">
 			<CloseButton clickAction={this.methods.CloseButton.clickAction} />
 			<h2>Settings</h2>
@@ -237,20 +255,20 @@ export default class Settings extends Component {
 						<td><label htmlFor="header">Header</label></td>
 						<td colSpan="2">
 							<Validation fieldName="header" messageContent="Enter a header" validationMethod="nonblank" isValid={this.methods.Validation.isValid}>	
-							<input name="header" type="text" onChange={this.handlers.onChange.field} value={this.state.settings.header} disabled={!this.state.settings.appStatus} />
+							<input name="header" type="text" onChange={this.handlers.onChange.field} value={this.state.settings.header}  />
 							</Validation>
 						</td></tr>
 					<tr>
 						<td><label htmlFor="message">Message</label></td>
 						<td colSpan="2">
 						<Validation fieldName="message" messageContent="Enter a message" validationMethod="nonblank" isValid={this.methods.Validation.isValid} >
-							<input name="message" type="text" onChange={this.handlers.onChange.field} value={this.state.settings.message} disabled={!this.state.settings.appStatus} />
+							<input name="message" type="text" onChange={this.handlers.onChange.field} value={this.state.settings.message}  />
 							</Validation>
 						</td></tr>
 					<tr>
 						<td><label htmlFor="dueDate">Due Date</label></td>
 						<td colSpan="2">
-							<SimpleDatePicker componentName="dueDate" startDate= {this.state.settings.dueDate} onChangeDate={this.methods.SimpleDatePicker.onChangeDate} selectMode="MDY" disableComponent={!this.state.settings.appStatus} />
+							<SimpleDatePicker componentName="dueDate" startDate= {this.state.settings.dueDate} onChangeDate={this.methods.SimpleDatePicker.onChangeDate} selectMode="MDY"  />
 						</td></tr>
 					{/* Birth Details:*/}
 					<tr>
@@ -260,7 +278,7 @@ export default class Settings extends Component {
 					<tr>
 						{/* Baby Details:Gender */}
 						<td>
-							<input type="checkbox" name="guessGender" value="gender" checked={this.helpers.isGuessable('gender')} onChange={this.handlers.onChange.birthDetails.config}/>
+							<input type="checkbox" name="guessGender" value="gender" checked={this.helpers.isGuessable('gender')} onChange={this.handlers.onChange.birthDetails.config} />
 							<label htmlFor="guessGender">Gender</label>
 						</td>
 							{!this.helpers.isGuessable('gender') 
@@ -280,7 +298,7 @@ export default class Settings extends Component {
 					<tr>
 						{/* Baby Details:Weight */}
 						<td>
-							<input type="checkbox" name="guessWeight" value="weight" checked={this.helpers.isGuessable('weight')} onChange={this.handlers.onChange.birthDetails.config}/>
+							<input type="checkbox" name="guessWeight" value="weight" checked={this.helpers.isGuessable('weight')} onChange={this.handlers.onChange.birthDetails.config} />
 							<label htmlFor="guessWeight">Weight</label>
 						</td>
 						{!this.helpers.isGuessable('weight') 
@@ -296,7 +314,7 @@ export default class Settings extends Component {
 					<tr>
 						{/* Baby Details:Date */}
 						<td>
-						<input type="checkbox" name="guessDate" value="date" checked={this.helpers.isGuessable('date')} onChange={this.handlers.onChange.birthDetails.config}/>
+						<input type="checkbox" name="guessDate" value="date" checked={this.helpers.isGuessable('date')} onChange={this.handlers.onChange.birthDetails.config} />
 						<label htmlFor="guessDate">Day of Birth</label>
 						</td>
 						{!this.helpers.isGuessable('date')
@@ -307,10 +325,23 @@ export default class Settings extends Component {
 						 }
 						</tr>
 						{/* Baby Details End */}
+					<tr>
+						<td colSpan="3">
+							<h3>Settings</h3>
+						</td></tr>
+					<tr>
+						<td>
+						<input type="checkbox" name="edit" checked={this.state.settings.edit} onChange={this.handlers.onChange.field} />
+						<label htmlFor="guessDate">Edit Mode</label>
+						</td>
+						<td colSpan="2"><label className="inner">Remove entries from guess table</label>
+						</td>
+					</tr>
 			</tbody>
 			</table>
 			</form>
 			</div>
+			</PasswordProtect>
 		)
 	}
 }

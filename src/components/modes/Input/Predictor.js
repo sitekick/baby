@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-import WeightDisplay from '../../../library/WeightDisplay';
-import LockIcon from '../../../library/LockIcon';
+import WeightDisplay from '../../library/WeightDisplay';
+import LockIcon from '../../library/LockIcon';
+import MonthMaker from '../../library/MonthMaker';
 
 function Predictor(props){
 	
@@ -27,11 +28,7 @@ function Predictor(props){
 		weightStat(){
 			return Math.floor(this.weight/this.entries);
 		},
-		date : 0,
-		dateStat(){
-			let avgDate = new Date(Math.floor(this.date/this.entries));
-			return avgDate.toDateString();
-		},
+		date : 0
 	};
 	
 	var guessable = props.appSettings.birthDetails.guessable;
@@ -42,7 +39,6 @@ function Predictor(props){
 
 	
 	for(let guess in props.babyGuesses){
-		
 		//counter
 		stats.entries += 1;
 		let data = props.babyGuesses[guess];
@@ -55,6 +51,8 @@ function Predictor(props){
 		stats.date += Date.UTC([data.date.year],[data.date.month],[data.date.day],now.getHours(),now.getMinutes());
 	}
 	
+	const avgDate = new Date( Math.floor(stats.date/stats.entries) );
+	
 	return (
 		<table className="predictor">
 		<tbody>
@@ -62,7 +60,7 @@ function Predictor(props){
 			<td><strong>Prediction</strong></td>
 			<td>{stats.genderStat()} <LockIcon display={!isGuessable('gender') ? 'white' : 'off'} /></td>
 			<td><WeightDisplay weightOz={stats.weightStat()} /> <LockIcon display={!isGuessable('weight') ? 'white' : 'off'} /></td>
-			<td>{stats.dateStat()} <LockIcon display={!isGuessable('date') ? 'white' : 'off'}/></td>
+			<td><MonthMaker mode="abbr" monthIntJS={avgDate.getMonth()}/> {`${avgDate.getDate()}, ${avgDate.getFullYear()}`}{} <LockIcon display={!isGuessable('date') ? 'white' : 'off'}/></td>
 		</tr>
 		</tbody>
 		</table>

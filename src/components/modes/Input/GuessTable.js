@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import Guess from './Guess';
 
-
 function GuessTable(props) {	 
 		
 	return (
@@ -19,7 +18,7 @@ function GuessTable(props) {
 					{props.babyGuesses.map( function(entry, index) {
 						
 					return (
-						<Guess key={index} pendingState={entry.pending} name={entry.name} onRemove={props.alterGuesses} gender={entry.gender} weight={entry.weight} date={entry.date} guessNumber={props.babyGuesses.length - index} canEdit={props.editMode.state} guessableFields={props.appSettings.birthDetails.guessable} />
+						<Guess key={index} pendingState={entry.pending} name={entry.name} onRemove={props.alterGuesses} gender={entry.gender} weight={entry.weight} date={entry.date} guessNumber={props.babyGuesses.length - index} canEdit={props.appSettings.edit} guessableFields={props.appSettings.birthDetails.guessable} />
 					);
 					})}
 				</tbody>

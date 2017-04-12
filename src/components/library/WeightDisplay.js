@@ -16,7 +16,27 @@ function WeightDisplay(props) {
 			};
 		}
 	
-	return <span className="display-weight">{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span></span>
+	if(props.displayBlock) {
+		return (
+			<div className="display-weight">
+			{ props.weightOz > 0 && 
+				<span>
+		{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span>
+				</span>
+			}
+			</div> 
+		)
+	} else {
+		return (
+			<span className="display-weight">
+			{ props.weightOz > 0 && 
+				<span>
+		{weightObj.lb} <span className="suffix">lbs.</span> {weightObj.oz} <span className="suffix">oz.</span>
+				</span>
+			}
+			</span> 
+		)
+	}
 	
 }
 

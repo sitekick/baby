@@ -1,15 +1,27 @@
 import React, {PropTypes} from 'react';
-import GuessTable from './Table/GuessTable';
-import GuessForm from './GuessForm/GuessForm';
-import Predictor from './Table/Predictor';
+import GuessTable from './GuessTable';
+import GuessForm from './GuessForm';
+import Predictor from './Predictor';
+import Results from './Results';
 
 function Input(props){
 	
-	return (
+		return (
+		
 		<div className="mode input">
-			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} editMode={props.guessTableEditMode} alterGuesses={props.guessTableAlterGuesses} appSettings={props.appSettings} />
-			<Predictor babyGuesses={props.guessTableBabyGuesses} appSettings={props.appSettings} />
-			<GuessForm onAdd={props.guessFormOnAdd} appSettings={props.appSettings} />
+			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} alterGuesses={props.guessTableAlterGuesses} appSettings={props.appSettings} />
+			{ props.appSettings.appStatus ? (
+				<div className="component-set">
+				<Predictor babyGuesses={props.guessTableBabyGuesses} appSettings={props.appSettings} />
+				<GuessForm onAdd={props.guessFormOnAdd} appSettings={props.appSettings} />
+				</div>
+				) : (
+				<div className="component-set">
+				{props.appSettings.birthDetails.guessable.length === 0 &&
+				<Results message="We are Proud to Announce..." appSettings={props.appSettings} />
+				}
+				</div>
+			)} 
 		</div>
 	)
 }

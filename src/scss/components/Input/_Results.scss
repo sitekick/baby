@@ -1,0 +1,15 @@
+.results {
+	text-align: center;
+	box-sizing: border-box;
+	
+	p{
+		font-size: 1.25em;
+		color: $blue_dark;
+		display: inline-block;
+		margin: 1em 0;
+	
+		strong{
+			color: $lavendar;
+		}
+	}
+}

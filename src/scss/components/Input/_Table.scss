@@ -19,8 +19,21 @@ table.guesses  {
 			font-size: 1.25em;
 			color: $blue_dark;
 			
+				button {
+					border: 0;
+					background: none;
+					cursor: pointer;
+					font-size: 1.25em;
+					height: auto;
+					color: $lavendar;
+					display: inline-block;
+					margin: 0;
+					padding: 0 .25em;
+				}
+			
+			
 			&.locked{
-				opacity: .5;
+// 				opacity: .5;
 			}
 			
 			&:nth-child(1){

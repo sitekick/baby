@@ -1,0 +1,18 @@
+.no-flexbox  {
+	
+	.flex-wrapper {
+		display: table;
+		width: 100%;
+			
+		.flex-item {
+			display: table-cell;
+			vertical-align: top;
+		
+		@include screen-small {
+			display: block;
+		}
+		}
+	}
+}
+
+

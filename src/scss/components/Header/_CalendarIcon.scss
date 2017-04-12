@@ -3,6 +3,7 @@
 	vertical-align: top;
 	width: 15%;
 	border: 3px solid $lavendar;
+	background-color: #FFF;
 		
 		.month  {
 			background-color: $lavendar;
@@ -16,7 +17,6 @@
 		
 		.day {
 			color: $lavendar;
-			background-color: #FFF;
 			width: 100%;
 			height: 30px;
 			line-height: 30px;
