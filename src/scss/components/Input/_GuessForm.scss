@@ -11,13 +11,33 @@
 		
 		&.image {
 			min-width: 150px;
+			
+			.baby-image{
+				min-height: 200px;
+				min-width: 125px;
+			
+				.display-weight {
+					font-size: 1.5em;
+					color: $blue_dark;
+					position: absolute;
+					bottom: -1.5em;
+					left: 50%;
+					transform: translateX(-50%);
+					white-space: nowrap;
+				
+				@include screen-medium {
+					top: 80%;
+					bottom: auto; left: auto;
+					right: 0;
+					transform: translateY(-80%);
+				}
+				}
+				
+			}
 		}
-		&.inputs {
-		}
-		
 		}
 	
-	@include screen-small {
+	@include screen-medium {
 		flex-direction: column;
 		margin: 0 2.5%;
 	}
@@ -26,11 +46,7 @@
 	form {
 	
 		input[type=text]{
-			border-width: 3px;
-		}
-		
-		input[name=name]{
-			max-width: 165px;
+			border: 0;
 		}
 		
 		input[type=submit]{
@@ -40,35 +56,55 @@
 	}
 	
 	.input-wrapper {
-		margin-bottom: 2em;
+		position: relative;
 		
-		label {
-			font-size: 1.25em;
-		}
-	
-		p {
-			font-size: 1.5em;
-			min-width: 90px;
-			margin: 0 10px 0 0;
+		> .validation-field {
+			width: 67.5%;	
+		
+		@include screen-medium{
 			display: inline-block;
-			color: $lavendar;
+		}
+		}
+
+		p {
+			
+		@include screen-medium{
+			width: 25%;
+			display: inline-block;
+		}
 		}
 	
 	&.submit {
 		border-top: 2px solid $lavendar;
 		margin: 2em 0;
 		padding-top: 1em;
+		
+		.validation-field {
+			width: 47.5%;
+		
+		@include screen-small {
+			width: 97.5%;
+			margin-bottom: 1.5em;
+		}	
+		}
+		
+		input[type=submit] {
+			width: 47.5%;
+			display: inline-block;
+			vertical-align: middle;
+		
+		@include screen-small {
+			display: block;
+			width: 100%;
+			margin: 0 auto;
+		}
+		}
 	}
 	
-	}
-	
-	.display-weight {
-		text-align:center;
-		font-size: 1.5em;
-		margin-top: .7em;
 	}
 
 	.lock-icon {
+		vertical-align: middle;
 		
 		span {
 			font-size: 12px;
@@ -76,15 +112,9 @@
 			border: 1px solid $lavendar;
 			background: #FFF;
 			color: $lavendar;
-			left: 20px;
+			left: 0;
+			bottom: -22px;
+			z-index: 1000;
 		}
-	}
-	
-	.validation-field {
-		display: inline-block;
-	
-	&.gender{
-		min-width: 150px;
-	}
 	}
 }

@@ -34,7 +34,7 @@ function Guess(props) {
 		<tr>
 			<td >
 			{props.canEdit &&
-				<button title="click to remove" onClick={function(){props.onRemove(props.index)}}>✕</button>
+				<button title="click to remove" onClick={ () => { props.onRemove(props.index)} }>✕</button>
 			} {props.name} </td>
 			<td className={cellClass('gender')}><div className={genderIconClass} /></td>
 			<td className={cellClass('weight')}><WeightDisplay weightOz={props.weight} /></td>

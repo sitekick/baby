@@ -9,7 +9,7 @@ function Input(props){
 		return (
 		
 		<div className="mode input">
-			<GuessTable babyGuesses={props.guessTableBabyGuesses.reverse()} alterGuesses={props.guessTableAlterGuesses} appSettings={props.appSettings} />
+			<GuessTable babyGuesses={props.guessTableBabyGuesses} alterGuesses={props.guessTableAlterGuesses} appSettings={props.appSettings} />
 			{ props.appSettings.appStatus ? (
 				<div className="component-set">
 				<Predictor babyGuesses={props.guessTableBabyGuesses} appSettings={props.appSettings} />

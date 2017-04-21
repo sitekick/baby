@@ -24,7 +24,7 @@ export default class LockIcon extends Component{
 		icon : {
 			width: 14,
 			height: 16,
-			backgroundImage: "url(src/img/ribbonCaps.png)",
+			backgroundImage: "url(src/img/sprites.png)",
 			backgroundRepeat: "no-repeat",
 			display: "inline-block",
 			position: "relative",

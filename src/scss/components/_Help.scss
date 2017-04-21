@@ -1,0 +1,44 @@
+.help {
+	
+	h3 {
+		border-bottom: 2px solid $blue_dark;
+	}
+	
+	p, ol {
+		font-size: 1.25em;
+		line-height: 1.5em;
+		font-weight: 300;
+	
+	strong {
+		font-weight: 700;
+		color: $blue;
+	}
+	
+	&.note {
+		display: inline-block;
+		line-height: 1.25em;
+		background: $blue;
+		color: #FFF;
+		padding: 1em 1em 1em 3em;
+		margin: 1em;
+		font-size: 1em;
+		position: relative;
+	}
+	}
+	
+	li {
+		font-style: italic;
+		margin-bottom: .35em;
+	}
+	
+	.lock-icon {
+		width: 14px;
+		height: 16px;
+		background-image: url( '/src/img/sprites.png' );
+		background-repeat: no-repeat;
+		display: inline-block;
+		background-position: 0 -128px;
+		position: absolute; top: 1em; left: 1em;
+		
+	}
+}

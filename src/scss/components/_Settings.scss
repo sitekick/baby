@@ -1,109 +1,136 @@
-form.settings  {
-	margin-bottom: 1em;
-	
-	
-	input[type=submit]{
-		width: 50%;
-	}
+.settings  {
 
-	.appStatus  {
-		overflow: hidden;
-		height: 50px;
-		color: $blue_dark;
-		margin-bottom: 1em;
+	form {
+	margin-bottom: 1em;	
 		
-		h3  {
-			margin: 0;
+		select {
+		
+		&[name=year] {
+			margin-right: 0;
 		}
+		}
+
+		.input-wrapper {
 			
-		input[type=checkbox]  {
-			float: right;
-			font-size: 2em;
-		}
+			p {
+			@include screen-medium{
+				display: inline-block;
+			}
+				
+			}
 		
-		p  {
-			font-size: .85em;
-			font-style: italic;
-			margin: 0;
-		}
-	}
-	
-	table  {
-		background-color: $grey;
-		color: $lavendar;
+		
+		&.switch-config{
+			
+			.detail-field {
+				width: 100%;
+				display: block;
+				border-top: 2px solid $lavendar;
+				padding-top: 5px;
+				text-align: right;
+				
+				.validation-field {
+					
+					input {
+						//width: auto;
+					}
+					
+					.error-message {
+						top: 5px;
+						color: $blue_dark;
+					}
+				
+				&.weight{
+					
+					input {
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+				} // .detail-field .validation-field
+			
+				select {
+					font-size: 1.25em;
+				}
+
+			&.guessable,
+			&.edit-mode {
+				text-align: left;
+				
+				label {
+					text-transform: uppercase;
+					color: $lavendar;
+					font-size: 10px;
+					font-size: .8rem;
+				}
+			}
+			}
+			
+			p {
+				width: auto;
+			}
+		}//.inputs.switch-config			
+		}//.inputs
 		
 		h3 {
 			color: $blue_dark;
 			margin: 1em 0 .5em;
 		}
 		
-		tbody  {
-									
-			td  {
-				padding: .5em 0 1em .5em;
-			
-				p {
-					font-size: 1em;
-					margin: 0 0 1em;
-					color: $blue_dark;
-					font-weight: 300;
-				}
-				
-				label {
-					font-size: 1.5em;
-					color: $lavendar;
-				
-				&.inner{
-					font-size: 1.15em;
-					color: $blue_dark;
-				}
-				}
-			
-			&.weight-field {
-				
-				.validation-field {
-					width: 65%;
-					display: inline-block;
-				
-				input[type=range] {
-					width: 95%;
-				}
-				
-				}
+		.appStatus  {
+			overflow: hidden;
+			height: 50px;
+			color: $blue_dark;
+			margin-bottom: 1em;
+		
+			h3  {
+				margin: 0;
 			}
+			
+			input[type=checkbox]  {
+				float: right;
+				font-size: 2em;
+			}
+		
+			.switch {
+				float: right;
+			}
+		
+			p  {
+				font-size: .85em;
+				font-style: italic;
+				margin: 0;
 			}
 		}
-	}
-}
-
-.error-message-group {
-	text-align: center;
-	margin-bottom: .5em;
-	background: $pink_dark;
-	padding: .5em;
-	color: #FFF;
+	}//form
 	
-	h4 {
-		margin: 0 0;
-		font-size: 1.25em;
-	}
-	
-	ul {
-		margin: 5px 0;
-		padding: 0;
+	.error-message-group {
+		text-align: center;
+		margin-bottom: .5em;
+		background: $pink_dark;
+		padding: .5em;
+		color: #FFF;
 		
+		h4 {
+			margin: 0 0;
+			font-size: 1.25em;
+		}
 		
-		li {
-		list-style: none;
-		border: 1px solid #FFF;
-		font-weight: 300;
-		
-		background: #FFF;
-		color: $pink_dark;
-		padding: .25em .5em;
-		display: inline-block;
-		margin: 5px;
-		border-radius: 5px;
+		ul {
+			margin: 5px 0;
+			padding: 0;
+			
+			li {
+				list-style: none;
+				border: 1px solid #FFF;
+				font-weight: 300;
+				background: #FFF;
+				color: $pink_dark;
+				padding: .25em .5em;
+				display: inline-block;
+				margin: 5px;
+				border-radius: 5px;
+			}
 		}
 	}
 }

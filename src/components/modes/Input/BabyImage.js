@@ -1,19 +1,21 @@
 import React from 'react';
+import WeightDisplay from '../../library/WeightDisplay';
 
-function BabyImage(props) {
+const BabyImage = props => {
+	
+	const weight = props.ounces > 0 ? props.ounces : 140;
 	
 	const style = {
 		babyWrap : {
 			position: "relative",
-			minWidth: 125,
-			minHeight: 200
+			opacity: props.ounces > 0 ? 1 : .5
 		},
 		babyBody : {
 			backgroundImage: "url(src/img/babySwaddle.png)",
 			backgroundRepeat: "no-repeat",
 			backgroundSize: "cover",
-			width: Math.floor(props.ounces / 224 * 110),
-			height: Math.floor(props.ounces / 224 * 195),
+			width: Math.floor(weight / 224 * 110),
+			height: Math.floor(weight / 224 * 195),
 			position: "absolute",
 			top: "50%",
 			left: "50%",
@@ -78,10 +80,9 @@ function BabyImage(props) {
 				<div style={(props.gender) ? style.applySlice(props.gender) : {}} />
 			</div>
 			</div>
-			
+			<WeightDisplay weightOz={props.ounces} displayBlock={true}/>
 		</div>
-		)
-		
+	)
 }
 
 export default BabyImage;

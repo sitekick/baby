@@ -1,0 +1,61 @@
+{
+	"settings": {
+		"appStatus": true,
+		"authKey": "demo",
+		"header": "Baby W",
+		"message": "Lynette & Hunter are Expecting",
+		"dueDate": {
+			"year": 2017,
+			"month": 4,
+			"day": 8
+		},
+		"birthDetails": {
+			"guessable": ["gender", "weight", "date"],
+			"gender": "",
+			"weight": 0,
+			"date": {
+				"year": 2017,
+				"month": 1,
+				"day": 8
+			}
+		},
+		"edit": false
+	},
+	"guesses": [{
+		"name": "Ray",
+		"gender": "boy",
+		"weight": "141",
+		"date": {
+			"month": 1,
+			"day": 25,
+			"year": 2017
+		}
+	}, {
+		"name": "Penelpp",
+		"gender": "boy",
+		"weight": "106",
+		"date": {
+			"month": 2,
+			"day": 19,
+			"year": 2017
+		}
+	}, {
+		"name": "Lynette W",
+		"gender": "girl",
+		"weight": 122,
+		"date": {
+			"month": 1,
+			"day": 2,
+			"year": 2017
+		}
+	}, {
+		"name": "Hunter Wi",
+		"gender": "boy",
+		"weight": 148,
+		"date": {
+			"month": 0,
+			"day": 31,
+			"year": 2017
+		}
+	}]
+}

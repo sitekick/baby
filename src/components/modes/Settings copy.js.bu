@@ -13,34 +13,44 @@ export default class Settings extends Component {
 	constructor(props){
 		super(props)
 		
+		console.log(props)
 		this.state = {
-			settings : {
-				appStatus: props.appStatus,
-				authKey: props.authKey,
-				header: props.header,
-				message: props.message,
-				dueDate: {
-					year : props.dueDate.year,
-					month : props.dueDate.month,
-					day : props.dueDate.day
-				},
-				birthDetails: {
-					guessable: props.birthDetails.guessable,
-					gender: props.birthDetails.gender,
-					weight: props.birthDetails.weight,
-					date: {
-						year : props.birthDetails.date.year,
-						month : props.birthDetails.date.month,
-						day : props.birthDetails.date.day
-					}
-				},
-				edit : props.edit
-			},
+			//settings : props.appSettings,
+			settings : {},
 			valid : {},
-			submitted : false,
-			changed : false
+			submitted : false
 		}
 		
+		this.mount = {
+			stateDefaults : () => {
+				//due date
+				let dueDateDefault;
+				if (!Object.keys(this.props.appSettings.dueDate).length) {
+					let today = new Date();
+					dueDateDefault = { year : today.getFullYear(), month : today.getMonth(), day : today.getDate() }
+				} else {
+					dueDateDefault = this.props.appSettings.dueDate;
+				}
+				//birth details date
+				let birthDetailsDateDefault;
+				if (Object.keys(this.props.appSettings.birthDetails.date).length > 0 ){
+					birthDetailsDateDefault = this.props.appSettings.birthDetails.date;
+				} else {
+					birthDetailsDateDefault = Object.keys(this.props.appSettings.dueDate).length > 0 && this.props.appSettings.dueDate || dueDateDefault;
+				}
+				//save
+				let delta = update(this.state,{
+					settings : {
+						dueDate : { $set : dueDateDefault},
+						birthDetails : {
+							date : { $set : birthDetailsDateDefault}
+						}
+					}
+				})
+			
+				this.setState(delta)
+			}
+		}
 		this.handlers = {
 			onChange : {
 				field : (e) => {
@@ -57,8 +67,7 @@ export default class Settings extends Component {
 					let delta = update(this.state, {
 						settings : {
 							[e.target.name] : { $set : value}
-						},
-						changed : { $set : true }
+						}
 					});
 					this.setState(delta);
 				},
@@ -69,8 +78,7 @@ export default class Settings extends Component {
 									birthDetails : {
 										[e.target.name] : { $set : e.target.value}
 									}
-								},
-								changed : { $set : true }
+								}
 							})
 						this.setState(delta);
 					},
@@ -84,8 +92,7 @@ export default class Settings extends Component {
 									birthDetails : {
 										guessable : { $splice : [[indexGuessable, 1]]}
 									}
-								},
-								changed : { $set : true }
+								}
 							})
 						} else {
 							//checked: accept guesses of current field/detail; add to guessable array; reset default values
@@ -95,8 +102,7 @@ export default class Settings extends Component {
 										guessable : { $push : [e.target.value] },
 										[e.target.value] : { $set : this.helpers.resetBirthDetail(e.target.value)}
 									}
-								},
-								changed : { $set : true }
+								}
 							})
 						}
 						//check for prior push to validation process for toggled configuration
@@ -126,8 +132,11 @@ export default class Settings extends Component {
 			CloseButton : {
 				clickAction : () => {
 					
+					let original = JSON.stringify(this.props.appSettings);
+					let submitted = JSON.stringify(this.state.settings);
+					
 					if( this.helpers.allFieldsValid() ) {
-						if(this.state.changed)
+						if(original != submitted)
 							this.props.settingsSubmit(this.state.settings);
 					 
 						this.props.closeButtonClickAction('settings','input');
@@ -146,15 +155,16 @@ export default class Settings extends Component {
 			},
 			SimpleDatePicker : {
 				onChangeDate : (segment, value, component) => {
+					
 					let delta;
+					//let segment = Object.keys(obj);
 					if(component === 'dueDate') {
 						delta = update(this.state, {
 							settings : {
 								dueDate : {
 									[segment] : { $set : value}
 								}
-							} ,
-							changed : { $set : true }
+							} 
 						});
 					}
 						
@@ -166,8 +176,7 @@ export default class Settings extends Component {
 										[segment] : {$set : value}
 									}
 								}
-							},
-							changed : { $set : true } 
+							} 
 						});
 					} 
 		
@@ -221,11 +230,14 @@ export default class Settings extends Component {
 		}
 	}
 	
-
+	componentWillMount() {
+		this.mount.stateDefaults();
+	}
+	
 	render() {
 		
 		return (
-			<PasswordProtect authKey={this.state.settings.authKey} CloseButtonClickAction={this.methods.PasswordProtect.CloseButtonClickAction} authorizeAction={this.methods.PasswordProtect.authorizeAction} >
+			
 			<div className="mode settings">
 				<CloseButton clickAction={this.methods.CloseButton.clickAction} />
 				<h2>Settings</h2>
@@ -324,21 +336,14 @@ export default class Settings extends Component {
 								<input type="checkbox" name="edit" checked={this.state.settings.edit} onChange={this.handlers.onChange.field} />
 							</Switch>
 							<p>Edit Mode</p>
-							{this.state.settings.edit 
-							?
 							<div className="detail-field edit-mode">
-								<label htmlFor="edit">Remove entries from the list of guesses</label>
+								<label htmlFor="edit">Remove entries from guess table</label>
 							</div>
-							:
-							<div className="detail-field edit-mode">
-								<label htmlFor="edit">Entries locked</label>
-							</div>
-							}
 						</div>
 					</div>
 				</form>
 			</div>
-		</PasswordProtect>	
+			
 		)
 	}
 }

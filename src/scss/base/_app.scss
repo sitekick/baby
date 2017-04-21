@@ -1,6 +1,7 @@
 body {
 	padding: 0;
 	margin: 0;
+	color: $blue_dark;
 	
 	&.pink {
 		background-color: $pink_shade;
@@ -8,7 +9,6 @@ body {
 	@include screen-small {
 		background-color: #FFF;
 	}
-	
 	}
 }
 
@@ -35,8 +35,6 @@ body {
 				margin-bottom: 1em;
 			}
 			
-			
-			
 			.close-button {
 				float: right;
 				font-size: 1.75em;
@@ -49,14 +47,12 @@ body {
 		margin: 2em 50px;
 	}
 	
-	
 	@include screen-small {
 		margin: 0;
 		max-width: 100%;
 		border: none;
 		border-radius: 0;
 	}
-	
 	}
 	
 	h1 {
@@ -81,12 +77,5 @@ body {
 	label {
 		font-weight: 300;
 	}
-
-@include screen-medium {
-	//border: 1px solid green;
-}
-@include screen-small {
-	//border: 1px solid red;
-}		
 
 }
